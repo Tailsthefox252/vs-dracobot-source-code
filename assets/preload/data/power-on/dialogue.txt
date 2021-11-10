@@ -1,0 +1,28 @@
+:dark:This should be the right building. It looks pretty tall though. You ready, Boyfriend?
+:dark:Beep!
+:dark:. . .
+:dad:The stereo should be connected now...
+:dad:Oh! Hey guys! Over here! You're just in time!
+w:dad:I'm so happy you made it here! It's been 3 years since I last saw you, Broki!
+:gf:So you must be Dracobot.
+:dad:Yup! And you must be Girlfriend.
+:gf:Yeah! It's nice to meet you.
+:dad:The pleasure is all mine!
+:gf:Anyways, the elevators weren't working and we had to take the stairs...
+:gf:Well, I had to go to my demon form and fly us to the top floor since BF was getting a bit tired. It was a lot of stairs...
+:dad:Yeah... Forgot to mention that the elevators have been acting wonky recently. Sorry about that.
+:gf:No need to apologize.
+:bf:Bep Bo Bap.
+:gf:Though, mind if I ask something about you?
+:dad:Oh!
+:dad:If I remember correctly, some information about me should be found within the assets folder.
+:dad:Some of them is actual information while others is just for shits and giggles.
+:gf:I see...
+:bf:Beep bo bap.
+:gf:...Hey? Why is there an outline there?
+:dad:Oh. I don't know honestly. It's been there longer than I can remember.
+:gf:What about the pair of shoes with a note on it?
+:dad:I don't know about that either. Sorry...
+:gf:Ah...
+:dad:Anyways, let's get started, shall we?
+:bf:Ske-be!
