@@ -203,7 +203,7 @@
 	"image": "characters/BOYFRIEND",
 	"position": [
 		0,
-		350
+		0
 	],
 	"healthicon": "bf",
 	"flip_x": true,

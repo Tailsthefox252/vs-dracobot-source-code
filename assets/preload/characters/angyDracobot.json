@@ -1,0 +1,122 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				25,
+				155
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Dracobot Idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				189,
+				157
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Dracobot Left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				93,
+				-23
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Dracobot Down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				57,
+				136
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Dracobot Up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				45,
+				205
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Dracobot Right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				45,
+				205
+			],
+			"anim": "singRIGHT-alt",
+			"fps": 24,
+			"name": "Dracobot Shutter",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				45,
+				205
+			],
+			"anim": "singUP-alt",
+			"fps": 24,
+			"name": "Dracobot Shutter",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				45,
+				205
+			],
+			"anim": "singLEFT-alt",
+			"fps": 24,
+			"name": "Dracobot Shutter",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				45,
+				205
+			],
+			"anim": "singDOWN-alt",
+			"fps": 24,
+			"name": "Dracobot Shutter",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/dracobot-angy",
+	"position": [
+		0,
+		100
+	],
+	"healthicon": "icon-angyDracobot",
+	"flip_x": false,
+	"healthbar_colors": [
+		195,
+		95,
+		75
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 4,
+	"scale": 0.8
+}

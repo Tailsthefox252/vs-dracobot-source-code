@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="draco campaign.png">
+	<!-- Created with Adobe Animate version 20.0.0.17400 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Idle instance 10000" x="0" y="0" width="298" height="357" frameX="0" frameY="-3" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10001" x="0" y="0" width="298" height="357" frameX="0" frameY="-3" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10002" x="298" y="0" width="294" height="359" frameX="0" frameY="-1" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10003" x="592" y="0" width="293" height="360" frameX="0" frameY="-1" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10004" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10005" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10006" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10007" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10008" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10009" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10010" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10011" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10012" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10013" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+	<SubTexture name="Idle instance 10014" x="0" y="360" width="291" height="361" frameX="-1" frameY="0" frameWidth="298" frameHeight="361"/>
+</TextureAtlas>

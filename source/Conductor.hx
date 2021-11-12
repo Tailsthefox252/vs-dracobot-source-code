@@ -1,13 +1,11 @@
 package;
 
 import Song.SwagSong;
-import flixel.FlxG;
 
 /**
  * ...
  * @author
  */
-
 typedef BPMChangeEvent =
 {
 	var stepTime:Int;
@@ -25,20 +23,12 @@ class Conductor
 	public static var offset:Float = 0;
 
 	public static var safeFrames:Int = 10;
-	public static var safeZoneOffset:Float = Math.floor((safeFrames / 60) * 1000); // is calculated in create(), is safeFrames in milliseconds
-	public static var timeScale:Float = Conductor.safeZoneOffset / 166;
+	public static var safeZoneOffset:Float = (safeFrames / 60) * 1000; // is calculated in create(), is safeFrames in milliseconds
 
 	public static var bpmChangeMap:Array<BPMChangeEvent> = [];
 
 	public function new()
 	{
-	}
-
-	public static function recalculateTimings()
-	{
-		Conductor.safeFrames = FlxG.save.data.frames;
-		Conductor.safeZoneOffset = Math.floor((Conductor.safeFrames / 60) * 1000);
-		Conductor.timeScale = Conductor.safeZoneOffset / 166;
 	}
 
 	public static function mapBPMChanges(song:SwagSong)
@@ -50,7 +40,7 @@ class Conductor
 		var totalPos:Float = 0;
 		for (i in 0...song.notes.length)
 		{
-			if(song.notes[i].changeBPM && song.notes[i].bpm != curBPM)
+			if (song.notes[i].changeBPM && song.notes[i].bpm != curBPM)
 			{
 				curBPM = song.notes[i].bpm;
 				var event:BPMChangeEvent = {
@@ -68,23 +58,7 @@ class Conductor
 		trace("new BPM map BUDDY " + bpmChangeMap);
 	}
 
-	public static function recalculateTimingStruct(SONG:Song)
-	{
-		for(i in SONG.eventObjects)
-		{
-			/*TimingStruct.addTiming(beat,bpm,endBeat, Std.parseFloat(OFFSET));
-
-            if (changeEvents.length != 0)
-            {
-                var data = TimingStruct.AllTimings[currentIndex - 1];
-                data.endBeat = beat;
-                data.length = (data.endBeat - data.startBeat) / (data.bpm / 60);
-                TimingStruct.AllTimings[currentIndex].startTime = data.startTime + data.length;
-            }*/
-		}
-	}
-
-	public static function changeBPM(newBpm:Float, ?recalcLength = true)
+	public static function changeBPM(newBpm:Float)
 	{
 		bpm = newBpm;
 

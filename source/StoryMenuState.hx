@@ -41,7 +41,7 @@ class StoryMenuState extends MusicBeatState
 	var txtWeekTitle:FlxText;
 	var bgSprite:FlxSprite;
 
-	private static var curWeek:Int = 0;
+	public static var curWeek:Int = 0;
 	public static var holyShit:Bool = false;
 	public static var roundedNum:Int = Std.int(Math.random() * 64);
 	public static var stupidShit:Bool = false;

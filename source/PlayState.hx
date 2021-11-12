@@ -143,6 +143,7 @@ class PlayState extends MusicBeatState
 
 	public var camZooming:Bool = false;
 	private var curSong:String = "";
+	private var shakeCam:Bool = false;
 
 	public var gfSpeed:Int = 1;
 	public var health:Float = 1;
@@ -249,6 +250,7 @@ class PlayState extends MusicBeatState
 	// Lua shit
 	private var luaDebugGroup:FlxTypedGroup<DebugLuaText>;
 	public var introSoundsSuffix:String = '';
+	public static var blackScreen:FlxSprite;
 
 	override public function create()
 	{
@@ -360,7 +362,6 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'rooftops':
-					defaultCamZoom = 0.75; // J: in order for this to look good, this is necessary
 					curStage = 'rooftops';
 					roofBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('rooftops/rooftops'));
 					roofBG.antialiasing = true;
@@ -369,7 +370,7 @@ class PlayState extends MusicBeatState
 					// bg.visible = false;
 					add(roofBG);
 
-					defaultCamZoom = 0.75; // J: in order for this to look good, this is necessary
+
 					curStage = 'rooftopsEvil';
 					evilBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('rooftops/rooftops_evil'));
 					evilBG.antialiasing = true;
@@ -737,16 +738,16 @@ class PlayState extends MusicBeatState
 			SONG.player3 = gfVersion; //Fix for the Chart Editor
 		}
 
-		gf = new Character(0, 0, gfVersion);
+		gf = new Character(400, 130, gfVersion);
 		startCharacterPos(gf);
 		gf.scrollFactor.set(0.95, 0.95);
 		gfGroup.add(gf);
 
-		dad = new Character(0, 0, SONG.player2);
+		dad = new Character(100, 100, SONG.player2);
 		startCharacterPos(dad, true);
 		dadGroup.add(dad);
 
-		boyfriend = new Boyfriend(0, 0, SONG.player1);
+		boyfriend = new Boyfriend(770, 450, SONG.player1);
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
 		
@@ -759,7 +760,7 @@ class PlayState extends MusicBeatState
 			gf.visible = false;
 		}
 
-		switch(songLowercase)
+		switch(curStage)
 		{
 			case 'limo':
 				resetFastCar();
@@ -1190,9 +1191,8 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	function schoolIntro(?dialogueBox:DialogueBox):Void
+	function schoolIntro(?dialogueBox:DialogueBox):Void //tried to fix, am suffering a bit probably just recode lol
 	{
-		inCutscene = true;
 		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 		black.scrollFactor.set();
 		add(black);
@@ -1207,74 +1207,143 @@ class PlayState extends MusicBeatState
 		senpaiEvil.scrollFactor.set();
 		senpaiEvil.updateHitbox();
 		senpaiEvil.screenCenter();
-		senpaiEvil.x += 300;
 
-		var songName:String = Paths.formatToSongPath(SONG.song);
-		if (songName == 'roses' || songName == 'thorns')
+		if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'roses'
+			|| StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns')
 		{
 			remove(black);
 
-			if (songName == 'thorns')
+			if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns')
 			{
 				add(red);
-				camHUD.visible = false;
 			}
 		}
-
-		new FlxTimer().start(0.3, function(tmr:FlxTimer)
+		if (StoryMenuState.curWeek == 6)
 		{
-			black.alpha -= 0.15;
+			new FlxTimer().start(0.3, function(tmr:FlxTimer)
+			{
+				black.alpha -= 0.15;
 
-			if (black.alpha > 0)
-			{
-				tmr.reset(0.3);
-			}
-			else
-			{
-				if (dialogueBox != null)
+				if (black.alpha > 0)
 				{
-					if (Paths.formatToSongPath(SONG.song) == 'thorns')
+					tmr.reset(0.3);
+				}
+				else
+				{
+					if (dialogueBox != null)
 					{
-						add(senpaiEvil);
-						senpaiEvil.alpha = 0;
-						new FlxTimer().start(0.3, function(swagTimer:FlxTimer)
+						inCutscene = true;
+
+						if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns')
 						{
-							senpaiEvil.alpha += 0.15;
-							if (senpaiEvil.alpha < 1)
+							add(senpaiEvil);
+							senpaiEvil.alpha = 0;
+							new FlxTimer().start(0.3, function(swagTimer:FlxTimer)
 							{
-								swagTimer.reset();
-							}
-							else
-							{
-								senpaiEvil.animation.play('idle');
-								FlxG.sound.play(Paths.sound('Senpai_Dies'), 1, false, null, true, function()
+								senpaiEvil.alpha += 0.15;
+								if (senpaiEvil.alpha < 1)
 								{
-									remove(senpaiEvil);
-									remove(red);
-									FlxG.camera.fade(FlxColor.WHITE, 0.01, true, function()
+									swagTimer.reset();
+								}
+								else
+								{
+									senpaiEvil.animation.play('idle');
+									FlxG.sound.play(Paths.sound('Senpai_Dies'), 1, false, null, true, function()
 									{
-										add(dialogueBox);
-										camHUD.visible = true;
-									}, true);
-								});
-								new FlxTimer().start(3.2, function(deadTime:FlxTimer)
-								{
-									FlxG.camera.fade(FlxColor.WHITE, 1.6, false);
-								});
-							}
-						});
+										remove(senpaiEvil);
+										remove(red);
+										FlxG.camera.fade(FlxColor.WHITE, 0.01, true, function()
+										{
+											add(dialogueBox);
+										}, true);
+									});
+									new FlxTimer().start(3.2, function(deadTime:FlxTimer)
+									{
+										FlxG.camera.fade(FlxColor.WHITE, 1.6, false);
+									});
+								}
+							});
+						}
+						else
+						{
+							add(dialogueBox);
+						}
 					}
 					else
 					{
-						add(dialogueBox);
+						startCountdown();
+
+						remove(black);
 					}
 				}
-				else
-					startCountdown();
+			});
+		}
+		if (StoryMenuState.curWeek == 7)
+		{
+			blackScreen = new FlxSprite(-250, -250).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), 0xFF000000);
+			blackScreen.scrollFactor.set();
+			blackScreen.alpha = 1;
+			add(blackScreen);
 
-				remove(black);
-			}
-		});
+			new FlxTimer().start(0.3, function(tmr:FlxTimer)
+			{ // 1
+				black.alpha -= 0.15;
+
+				if (black.alpha > 0)
+				{ // 2
+					tmr.reset(0.3);
+				} // 2
+				else
+				{ // 2
+					if (dialogueBox != null)
+					{ // 3
+						inCutscene = true;
+
+						// if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns')
+						// { //4
+						// 	add(senpaiEvil);
+						// 	senpaiEvil.alpha = 0;
+						// 	new FlxTimer().start(0.3, function(swagTimer:FlxTimer)
+						// 	{ //5
+						// 		senpaiEvil.alpha += 0.15;
+						// 		if (senpaiEvil.alpha < 1)
+						// 		{ //6
+						// 			swagTimer.reset();
+						// 		} //6
+						// 		else
+						// 		{ //6
+						// 			senpaiEvil.animation.play('idle');
+						// 			FlxG.sound.play(Paths.sound('Senpai_Dies'), 1, false, null, true, function()
+						// 			{ //7
+						// 				remove(senpaiEvil);
+						// 				remove(red);
+						// 				FlxG.camera.fade(FlxColor.WHITE, 0.01, true, function()
+						// 				{ //8
+						// 					add(dialogueBox);
+						// 				}, true); //8
+						// 			}); //7
+						// 			new FlxTimer().start(3.2, function(deadTime:FlxTimer)
+						// 			{ //7
+						// 				FlxG.camera.fade(FlxColor.WHITE, 1.6, false);
+						// 			}); //6
+						// 		} //6
+						// 	}); //5
+						// } //4
+						// else
+						// { //4
+						add(dialogueBox);
+						trace('Dialog box all seems in order');
+						// } //4
+					} // 3
+					else
+					{ // 3
+						startCountdown();
+
+						remove(black);
+					} // 3
+				} // 2
+			}); // 1
+		} // 0
 	}
 
 	var startTimer:FlxTimer;
@@ -1846,6 +1915,10 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		if (shakeCam)
+		{
+			FlxG.camera.shake(0.05, 0.05);
+		}
 		/*if (FlxG.keys.justPressed.NINE)
 		{
 			iconP1.swapOldIcon();
@@ -2518,6 +2591,7 @@ class PlayState extends MusicBeatState
 					{
 						bruh.destroy();
 					}
+				});
 			case 'Blammed Lights':
 				var lightId:Int = Std.parseInt(value1);
 				if(Math.isNaN(lightId)) lightId = 0;

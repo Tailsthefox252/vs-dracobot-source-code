@@ -191,7 +191,7 @@ class TitleState extends MusicBeatState
 		// bg.updateHitbox();
 		add(bg);
 
-		logoBl = new FlxSprite(0, 1500);
+		logoBl = new FlxSprite(FlxG.width * -0.05, FlxG.height * -0.05);
 		logoBl.frames = Paths.getSparrowAtlas('DracoLogoBumpin');
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
