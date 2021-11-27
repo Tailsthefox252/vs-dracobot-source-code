@@ -8,6 +8,7 @@ import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
+import flixel.util.FlxSave;
 
 class Main extends Sprite
 {
@@ -72,6 +73,9 @@ class Main extends Sprite
 		Paths.getModFolders();
 		ClientPrefs.startControls();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
+
+		if (FlxG.save.data.warningScreen)
+			FlxG.switchState(new WarnyScreeny());
 
 		#if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);

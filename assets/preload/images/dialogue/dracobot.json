@@ -1,11 +1,11 @@
 {
 	"position": [
-		0,
-		135
+		200,
+		65
 	],
-	"dialogue_pos": "right",
-	"scale": 1.5,
-	"image": "biff",
+	"dialogue_pos": "left",
+	"scale": 1.25,
+	"image": "dracobot",
 	"animations": [
 		{
 			"idle_offsets": [

@@ -31,14 +31,14 @@ class WarnyScreeny extends FlxState
 		{
 			FuckShit.loadEmbedded(Paths.sound('cancelMenu'));
             FuckShit.play();
-            FlxG.switchState(new Caching());
+            FlxG.switchState(new TitleState());
         }
         if(FlxG.keys.justPressed.F)
         {
 			FuckShit.loadEmbedded(Paths.sound('confirmMenu'));
 			FlxG.save.data.warningScreen = false;
 			FuckShit.play();
-			FlxG.switchState(new Caching());
+			FlxG.switchState(new TitleState());
         }
     }
 }

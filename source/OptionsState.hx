@@ -705,7 +705,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 	private static var curSelected:Int = 0;
 	static var unselectableOptions:Array<String> = [
 		'GRAPHICS',
-		'GAMEPLAY'
+		'GAMEPLAY',
+		'MISCELLANEOUS'
 	];
 	static var noCheckbox:Array<String> = [
 		'Framerate',
@@ -728,10 +729,10 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Note Splashes',
 		'Hide HUD',
 		'Hide Song Length',
-		'Flashing Lights',
-		'Camera Zooms'
+		'MISCELLANEOUS',
+		'Warning Screen',
 		#if !mobile
-		,'FPS Counter'
+		'FPS Counter'
 		#end
 	];
 
@@ -896,6 +897,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 					case 'Swearing':
 						ClientPrefs.cursing = !ClientPrefs.cursing;
 
+					case 'Warning Screen':
+						ClientPrefs.warningScreen = !ClientPrefs.warningScreen; //porting this done by RushFox, play Maginage Matches
+
 					case 'Downscroll':
 						ClientPrefs.downScroll = !ClientPrefs.downScroll;
 
@@ -996,6 +1000,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 				daText = "If checked, hides Opponent's notes and your notes get centered.";
 			case 'Ghost Tapping':
 				daText = "If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.";
+			case 'Warning Screen':
+				daText = "If unchecked, disables the warning screen at the \n beginning of the game.";
 			case 'Swearing':
 				daText = "If unchecked, your mom won't be angry at you.";
 			case 'Violence':
@@ -1070,6 +1076,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daValue = ClientPrefs.middleScroll;
 					case 'Ghost Tapping':
 						daValue = ClientPrefs.ghostTapping;
+					case 'Warning Screen':
+						daValue = ClientPrefs.warningScreen;
 					case 'Swearing':
 						daValue = ClientPrefs.cursing;
 					case 'Violence':

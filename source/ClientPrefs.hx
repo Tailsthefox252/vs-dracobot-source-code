@@ -24,6 +24,7 @@ class ClientPrefs {
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
 	public static var hideTime:Bool = false;
+	public static var warningScreen:Bool = true;
 
 	//Every key has two binds, these binds are defined on defaultKeys! If you want your control to be changeable, you have to add it on ControlsSubState (inside OptionsState.hx)'s list
 	public static var keyBinds:Map<String, Dynamic> = new Map<String, Dynamic>();
@@ -52,6 +53,7 @@ class ClientPrefs {
 	}
 
 	public static function saveSettings() {
+		FlxG.save.data.warningScreen = warningScreen;
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.middleScroll = middleScroll;
 		FlxG.save.data.showFPS = showFPS;
@@ -81,6 +83,9 @@ class ClientPrefs {
 	}
 
 	public static function loadPrefs() {
+		if (FlxG.save.data.warningScreen != null)
+			warningScreen = FlxG.save.data.warningScreen; //funny done by RushFox, play Reinked or die.
+
 		if(FlxG.save.data.downScroll != null) {
 			downScroll = FlxG.save.data.downScroll;
 		}
@@ -113,9 +118,9 @@ class ClientPrefs {
 			} else {
 				FlxG.drawFramerate = framerate;
 				FlxG.updateFramerate = framerate;
-			}
+			} //this is PROBABLY commented out cuz week 7 source dont exist, but I WANT TO BELIEVE THAT THE CURSING AND VIOLENCE OPTIONS DO nOTHING ON PURPOSE
 		}
-		/*if(FlxG.save.data.cursing != null) {
+		/*if(FlxG.save.data.cursing != null) { 
 			cursing = FlxG.save.data.cursing;
 		}
 		if(FlxG.save.data.violence != null) {

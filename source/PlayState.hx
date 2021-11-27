@@ -361,6 +361,8 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
+			case 'farmville':
+					var NeatSky = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFFACD2C3);
 			case 'rooftops':
 					curStage = 'rooftops';
 					roofBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('rooftops/rooftops'));
@@ -1025,10 +1027,11 @@ class PlayState extends MusicBeatState
 							}
 						});
 					});
-				case 'senpai' | 'roses' | 'thorns'|'power-on'|'error-404'|'scan'|'solder':
+				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
-
+				case 'power-on' | 'error-404' | 'scan':
+					startDialogue(dialogueJson);
 				default:
 					startCountdown();
 			}
@@ -1171,7 +1174,6 @@ class PlayState extends MusicBeatState
 			CoolUtil.precacheSound('dialogue');
 			CoolUtil.precacheSound('dialogueClose');
 			var doof:DialogueBoxPsych = new DialogueBoxPsych(dialogueFile, song);
-			doof.scrollFactor.set();
 			if(endingSong) {
 				doof.finishThing = endSong;
 			} else {
@@ -2576,6 +2578,19 @@ class PlayState extends MusicBeatState
 				if(Math.isNaN(value)) value = 1;
 				gfSpeed = value;
 
+			case 'Dracobot Shutter':
+				switch(Std.parseInt(value1))
+				{
+					case 1:
+						roofBG.visible = true;
+						evilBG.visible = false;
+						shakeCam = false;
+					default:
+						roofBG.visible = false;
+						evilBG.visible = true;
+						shakeCam = true;
+						gf.playAnim('scared', true);
+				}
 			case 'Dracobot Warning':
 				var bruh:FlxSprite = new FlxSprite();
 				bruh.loadGraphic(Paths.image('warning', 'shared'));
@@ -3875,207 +3890,6 @@ class PlayState extends MusicBeatState
 		if(curStep == lastStepHit) {
 			return;
 		}
-		
-		if (curSong == 'Error 404')
-			{
-				switch (curStep)
-				{
-					case 500:
-						var bruh:FlxSprite = new FlxSprite();
-						bruh.loadGraphic(Paths.image('warning', 'shared'));
-						bruh.antialiasing = true;
-						bruh.active = false;
-						bruh.scrollFactor.set();
-						bruh.screenCenter();
-						bruh.scale.set(1.5, 1.5);
-						add(bruh);
-						FlxTween.tween(bruh, {alpha: 0}, 1, {
-							ease: FlxEase.cubeInOut,
-							onComplete: function(twn:FlxTween)
-							{
-								bruh.destroy();
-							}
-						});
-					case 1778:
-						var bruh:FlxSprite = new FlxSprite();
-						bruh.loadGraphic(Paths.image('warning', 'shared'));
-						bruh.antialiasing = true;
-						bruh.active = false;
-						bruh.scrollFactor.set();
-						bruh.screenCenter();
-						bruh.scale.set(1.5, 1.5);
-						add(bruh);
-						FlxTween.tween(bruh, {alpha: 0}, 1, {
-							ease: FlxEase.cubeInOut,
-							onComplete: function(twn:FlxTween)
-							{
-								bruh.destroy();
-							}
-						});
-					case 1800:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 1808:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 1824:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 1832:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 1840:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 1848:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 1864:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 1872:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 1880:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 1888:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 1896:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 1904:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2056:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2064:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2080:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2088:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2096:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2104:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2120:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2128:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2136:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2144:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2152:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2160:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2184:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2192:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2208:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2216:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2224:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2232:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2248:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2256:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2264:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2272:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-					case 2280:
-						roofBG.visible = false;
-						evilBG.visible = true;
-						shakeCam = true;
-						gf.playAnim('scared', true);
-					case 2288:
-						roofBG.visible = true;
-						evilBG.visible = false;
-						shakeCam = false;
-				}
-			}
 
 		lastStepHit = curStep;
 		setOnLuas('curStep', curStep);

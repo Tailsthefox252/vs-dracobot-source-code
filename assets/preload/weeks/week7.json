@@ -1,8 +1,8 @@
 {
 	"songs": [
-		["Power-On", "dracobot", [255, 120, 191]],
+		["Power On", "dracobot", [255, 120, 191]],
 		["Scan", "dracobot", [255, 120, 191]],
-		["Error-404", "angyDracobot", [255, 120, 191]],
+		["Error 404", "angyDracobot", [255, 120, 191]],
 		["Solder", "dracobot", [255, 120, 191]]
 	],
 

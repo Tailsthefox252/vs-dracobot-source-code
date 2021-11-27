@@ -40,6 +40,7 @@ class Alphabet extends FlxSpriteGroup
 	var splitWords:Array<String> = [];
 
 	var isBold:Bool = false;
+	public var typingSound:String = '';
 
 	public var lettersArray:Array<AlphaCharacter> = [];
 
@@ -228,7 +229,7 @@ class Alphabet extends FlxSpriteGroup
 			}
 			if (dialogueSound != null)
 				dialogueSound.stop();
-			dialogueSound = FlxG.sound.play(Paths.sound('dialogue'));
+			dialogueSound = FlxG.sound.play(Paths.sound('talksoundsShit/' + this.typingSound +'dialogue'));
 		}
 		else
 		{
@@ -341,7 +342,7 @@ class Alphabet extends FlxSpriteGroup
 				{
 					if (dialogueSound != null)
 						dialogueSound.stop();
-					dialogueSound = FlxG.sound.play(Paths.sound('dialogue'));
+					dialogueSound = FlxG.sound.play(Paths.sound('talksoundsShit/' + this.typingSound + 'dialogue'));
 				}
 
 				add(letter);

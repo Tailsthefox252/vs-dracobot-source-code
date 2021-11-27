@@ -11,7 +11,10 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.FlxSubState;
 import haxe.Json;
+import flixel.math.FlxRect;
 import haxe.format.JsonParser;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
@@ -23,10 +26,10 @@ using StringTools;
 typedef DialogueCharacterFile = {
 	var image:String;
 	var dialogue_pos:String;
-
 	var animations:Array<DialogueAnimArray>;
 	var position:Array<Float>;
 	var scale:Float;
+	var specialFlags:Array<String>;
 }
 
 typedef DialogueAnimArray = {
@@ -76,8 +79,22 @@ class DialogueCharacter extends FlxSprite
 		this.curCharacter = character;
 
 		reloadCharacterJson(character);
-		frames = Paths.getSparrowAtlas('dialogue/' + jsonFile.image);
-		reloadAnimations();
+		
+		if (jsonFile.specialFlags != null)
+		{
+			for (flag in jsonFile.specialFlags)
+				switch (flag)
+				{
+					case "StaticPortrait": //makes so the game doesnt use a sparrow atlas when it really doesnt need to.
+						loadGraphic(Paths.image('dialogue/' + jsonFile.image));
+				}
+		}
+		else 
+		{
+			frames = Paths.getSparrowAtlas('dialogue/' + jsonFile.image);
+			reloadAnimations();
+		}
+
 	}
 
 	public function reloadCharacterJson(character:String) {
@@ -133,7 +150,6 @@ class DialogueCharacter extends FlxSprite
 			playIdle = true;
 		}
 		animation.play(playIdle ? leAnim + IDLE_SUFFIX : leAnim, false);
-
 		if(dialogueAnimations.exists(leAnim)) {
 			var anim:DialogueAnimArray = dialogueAnimations.get(leAnim);
 			if(playIdle) {
@@ -158,6 +174,9 @@ class DialogueCharacter extends FlxSprite
 // TO DO: Clean code? Maybe? idk
 class DialogueBoxPsych extends FlxSpriteGroup
 {
+	var SkipText = new FlxSprite(FlxG.width * 0.85, FlxG.height * 0.035);
+	var SkipTextHighlight = new FlxSprite(FlxG.width * 0.85, FlxG.height * 0.035);
+
 	var dialogue:Alphabet;
 	var dialogueList:DialogueFile = null;
 
@@ -166,12 +185,15 @@ class DialogueBoxPsych extends FlxSpriteGroup
 	public var skipDialogueThing:Void->Void = null;
 	var bgFade:FlxSprite = null;
 	var box:FlxSprite;
+
 	var textToType:String = '';
 
 	var arrayCharacters:Array<DialogueCharacter> = [];
 
 	var currentText:Int = 0;
 	var offsetPos:Float = -600;
+
+	var SkipCoolThing:Float = 0;
 
 	var textBoxTypes:Array<String> = ['normal', 'angry'];
 	//var charPositionList:Array<String> = ['left', 'center', 'right'];
@@ -184,12 +206,20 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			FlxG.sound.playMusic(Paths.music(song), 0);
 			FlxG.sound.music.fadeIn(2, 0, 1);
 		}
+
+		SkipText.frames = Paths.getSparrowAtlas('funny monkey movie');
+		SkipTextHighlight.frames = Paths.getSparrowAtlas('woa cool');
 		
 		bgFade = new FlxSprite(-500, -500).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
 		bgFade.scrollFactor.set();
 		bgFade.visible = true;
 		bgFade.alpha = 0;
+
 		add(bgFade);
+		add(SkipText);
+		add(SkipTextHighlight);
+
+		SkipTextHighlight.clipRect = new FlxRect(FlxG.width * 0.85, SkipTextHighlight.y, SkipTextHighlight.width, SkipTextHighlight.height);
 
 		this.dialogueList = dialogueList;
 		spawnCharacters();
@@ -275,6 +305,31 @@ class DialogueBoxPsych extends FlxSpriteGroup
 	var scrollSpeed = 4500;
 	var daText:Alphabet = null;
 	var ignoreThisFrame:Bool = true; //First frame is reserved for loading dialogue images
+
+	public function KILLHAHA()
+	{
+		dialogueEnded = true;
+		for (i in 0...textBoxTypes.length)
+		{
+			var checkArray:Array<String> = ['', 'center-'];
+			var animName:String = box.animation.curAnim.name;
+			for (j in 0...checkArray.length)
+			{
+				if (animName == checkArray[j] + textBoxTypes[i] || animName == checkArray[j] + textBoxTypes[i] + 'Open')
+				{
+					box.animation.play(checkArray[j] + textBoxTypes[i] + 'Open', true);
+				}
+			}
+		}
+
+		box.animation.curAnim.curFrame = box.animation.curAnim.frames.length - 1;
+		box.animation.curAnim.reverse();
+		daText.killTheTimer();
+		daText.kill();
+		remove(daText);
+		daText.destroy();
+		daText = null;
+	}
 	override function update(elapsed:Float)
 	{
 		if(ignoreThisFrame) {
@@ -287,9 +342,12 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			bgFade.alpha += 0.5 * elapsed;
 			if(bgFade.alpha > 0.5) bgFade.alpha = 0.5;
 
-			if(PlayerSettings.player1.controls.ACCEPT) {
-				if(!daText.finishedText) {
-					if(daText != null) {
+			if (PlayerSettings.player1.controls.ACCEPT)
+			{
+				if (!daText.finishedText)
+				{
+					if (daText != null)
+					{
 						daText.killTheTimer();
 						daText.kill();
 						remove(daText);
@@ -297,17 +355,23 @@ class DialogueBoxPsych extends FlxSpriteGroup
 					}
 					daText = new Alphabet(DEFAULT_TEXT_X, DEFAULT_TEXT_Y, textToType, false, true, 0.0, 0.7);
 					add(daText);
-					
-					if(skipDialogueThing != null) {
+
+					if (skipDialogueThing != null)
+					{
 						skipDialogueThing();
 					}
-				} else if(currentText >= dialogueList.dialogue.length) {
+				}
+				else if (currentText >= dialogueList.dialogue.length)
+				{
 					dialogueEnded = true;
-					for (i in 0...textBoxTypes.length) {
+					for (i in 0...textBoxTypes.length)
+					{
 						var checkArray:Array<String> = ['', 'center-'];
 						var animName:String = box.animation.curAnim.name;
-						for (j in 0...checkArray.length) {
-							if(animName == checkArray[j] + textBoxTypes[i] || animName == checkArray[j] + textBoxTypes[i] + 'Open') {
+						for (j in 0...checkArray.length)
+						{
+							if (animName == checkArray[j] + textBoxTypes[i] || animName == checkArray[j] + textBoxTypes[i] + 'Open')
+							{
 								box.animation.play(checkArray[j] + textBoxTypes[i] + 'Open', true);
 							}
 						}
@@ -321,28 +385,45 @@ class DialogueBoxPsych extends FlxSpriteGroup
 					daText = null;
 					updateBoxOffsets(box);
 					FlxG.sound.music.fadeOut(1, 0);
-				} else {
+				}
+				else
+				{
 					startNextDialog();
 				}
 				FlxG.sound.play(Paths.sound('dialogueClose'));
-			} else if(daText.finishedText) {
+			}
+			else if (FlxG.keys.justPressed.S)
+			{
+				FlxTween.tween(SkipText, {y: -125}, 1, {ease: FlxEase.cubeIn});
+				KILLHAHA();
+			}
+			else if (daText.finishedText)
+			{
 				var char:DialogueCharacter = arrayCharacters[lastCharacter];
-				if(char != null && char.animation.curAnim != null && char.animationIsLoop() && char.animation.finished) {
+				if (char != null && char.animation.curAnim != null && char.animationIsLoop() && char.animation.finished)
+				{
 					char.playAnim(char.animation.curAnim.name, true);
 				}
-			} else {
+			}
+			else
+			{
 				var char:DialogueCharacter = arrayCharacters[lastCharacter];
-				if(char != null && char.animation.curAnim != null && char.animation.finished) {
+				if (char != null && char.animation.curAnim != null && char.animation.finished)
+				{
 					char.animation.curAnim.restart();
 				}
 			}
 
-			if(box.animation.curAnim.finished) {
-				for (i in 0...textBoxTypes.length) {
+			if (box.animation.curAnim.finished)
+			{
+				for (i in 0...textBoxTypes.length)
+				{
 					var checkArray:Array<String> = ['', 'center-'];
 					var animName:String = box.animation.curAnim.name;
-					for (j in 0...checkArray.length) {
-						if(animName == checkArray[j] + textBoxTypes[i] || animName == checkArray[j] + textBoxTypes[i] + 'Open') {
+					for (j in 0...checkArray.length)
+					{
+						if (animName == checkArray[j] + textBoxTypes[i] || animName == checkArray[j] + textBoxTypes[i] + 'Open')
+						{
 							box.animation.play(checkArray[j] + textBoxTypes[i], true);
 						}
 					}
@@ -350,43 +431,59 @@ class DialogueBoxPsych extends FlxSpriteGroup
 				updateBoxOffsets(box);
 			}
 
-			if(lastCharacter != -1 && arrayCharacters.length > 0) {
-				for (i in 0...arrayCharacters.length) {
+			if (lastCharacter != -1 && arrayCharacters.length > 0)
+			{
+				for (i in 0...arrayCharacters.length)
+				{
 					var char = arrayCharacters[i];
-					if(char != null) {
-						if(i != lastCharacter) {
-							switch(char.jsonFile.dialogue_pos) {
+					if (char != null)
+					{
+						if (i != lastCharacter)
+						{
+							switch (char.jsonFile.dialogue_pos)
+							{
 								case 'left':
 									char.x -= scrollSpeed * elapsed;
-									if(char.x < char.startingPos + offsetPos) char.x = char.startingPos + offsetPos;
+									if (char.x < char.startingPos + offsetPos)
+										char.x = char.startingPos + offsetPos;
 								case 'center':
 									char.y += scrollSpeed * elapsed;
-									if(char.y > char.startingPos + FlxG.height) char.y = char.startingPos + FlxG.height;
+									if (char.y > char.startingPos + FlxG.height)
+										char.y = char.startingPos + FlxG.height;
 								case 'right':
 									char.x += scrollSpeed * elapsed;
-									if(char.x > char.startingPos - offsetPos) char.x = char.startingPos - offsetPos;
+									if (char.x > char.startingPos - offsetPos)
+										char.x = char.startingPos - offsetPos;
 							}
 							char.alpha -= 3 * elapsed;
-							if(char.alpha < 0.00001) char.alpha = 0.00001;
-						} else {
-							switch(char.jsonFile.dialogue_pos) {
+							if (char.alpha < 0.00001)
+								char.alpha = 0.00001;
+						}
+						else
+						{
+							switch (char.jsonFile.dialogue_pos)
+							{
 								case 'left':
 									char.x += scrollSpeed * elapsed;
-									if(char.x > char.startingPos) char.x = char.startingPos;
+									if (char.x > char.startingPos)
+										char.x = char.startingPos;
 								case 'center':
 									char.y -= scrollSpeed * elapsed;
-									if(char.y < char.startingPos) char.y = char.startingPos;
+									if (char.y < char.startingPos)
+										char.y = char.startingPos;
 								case 'right':
 									char.x -= scrollSpeed * elapsed;
-									if(char.x < char.startingPos) char.x = char.startingPos;
+									if (char.x < char.startingPos)
+										char.x = char.startingPos;
 							}
 							char.alpha += 3 * elapsed;
-							if(char.alpha > 1) char.alpha = 1;
+							if (char.alpha > 1)
+								char.alpha = 1;
 						}
 					}
 				}
 			}
-		} else { //Dialogue ending
+		}else{ // Dialogue ending
 			if(box != null && box.animation.curAnim.curFrame <= 0) {
 				box.kill();
 				remove(box);
@@ -488,20 +585,38 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		}
 
 		textToType = curDialogue.text;
-		daText = new Alphabet(DEFAULT_TEXT_X, DEFAULT_TEXT_Y, textToType, false, true, curDialogue.speed, 0.7);
-		add(daText);
-
 		var char:DialogueCharacter = arrayCharacters[character];
-		if(char != null) {
-			char.playAnim(curDialogue.expression, daText.finishedText);
-			if(char.animation.curAnim != null) {
-				var rate:Float = 24 - (((curDialogue.speed - 0.05) / 5) * 480);
-				if(rate < 12) rate = 12;
-				else if(rate > 48) rate = 48;
-				char.animation.curAnim.frameRate = rate;
+
+		daText = new Alphabet(DEFAULT_TEXT_X, DEFAULT_TEXT_Y, textToType, false, true, curDialogue.speed, 0.7);
+		daText.typingSound = arrayCharacters[character].curCharacter;
+
+		if(char != null)
+		{
+			if(!char.jsonFile.specialFlags.contains('StaticPortrait')) 
+			{
+				char.playAnim(curDialogue.expression, daText.finishedText);
+				if(char.animation.curAnim != null) 
+				{
+					var rate:Float = 24 - (((curDialogue.speed - 0.05) / 5) * 480);
+					if(rate < 12) rate = 12;
+					else if(rate > 48) rate = 48;
+					char.animation.curAnim.frameRate = rate;
+				}
+			}
+			else 
+			{
+				if (FileSystem.exists('dialogue/' + curDialogue.expression))
+				{
+					char.loadGraphic(Paths.image('dialogue/' + curDialogue.expression)); //saucyy //currently doesnt work since setting char.frames fucking breaks flxsprite
+				}
+				else
+				{
+					char.loadGraphic(Paths.image('dialogue/' + char.jsonFile.image));
+				}
 			}
 		}
 		currentText++;
+		add(daText);
 
 		if(nextDialogueThing != null) {
 			nextDialogueThing();

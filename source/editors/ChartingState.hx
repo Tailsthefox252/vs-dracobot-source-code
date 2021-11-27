@@ -60,6 +60,14 @@ class ChartingState extends MusicBeatState
 	var eventStuff:Array<Dynamic> = [
 		['', "Nothing. Yep, that's right."],
 		[
+			'Dracobot Shutter',
+			'IF Value 0 is null or 0, it starts the Shutter,\nIF Value 0 is 1, it stops the Shutter.'
+		],
+		[
+			'Dracobot Warning',
+			'Warning effect from Error-404 but a charting event.'
+		],
+		[
 			'Hey!',
 			"Plays the \"Hey!\" animation from Bopeebo,\nValue 1: BF = Only Boyfriend, GF = Only Girlfriend,\nSomething else = Both.\nValue 2: Custom animation duration,\nleave it blank for 0.6s"
 		],
