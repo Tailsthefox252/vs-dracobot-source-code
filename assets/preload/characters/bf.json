@@ -17,6 +17,10 @@
 				5,
 				-6
 			],
+			"camera_pos": [
+				-260,
+				0
+			],
 			"anim": "singLEFT",
 			"fps": 24,
 			"name": "BF NOTE LEFT0",
@@ -27,6 +31,10 @@
 			"offsets": [
 				-10,
 				-50
+			],
+			"camera_pos": [
+				-90,
+				150
 			],
 			"anim": "singDOWN",
 			"fps": 24,
@@ -39,6 +47,10 @@
 				-29,
 				27
 			],
+			"camera_pos": [
+				-110,
+				-50
+			],
 			"anim": "singUP",
 			"fps": 24,
 			"name": "BF NOTE UP0",
@@ -49,6 +61,10 @@
 			"offsets": [
 				-48,
 				-7
+			],
+			"camera_pos": [
+				20,
+				0
 			],
 			"anim": "singRIGHT",
 			"fps": 24,
@@ -61,6 +77,10 @@
 				7,
 				19
 			],
+			"camera_pos": [
+				-50,
+				0
+			],
 			"anim": "singLEFTmiss",
 			"fps": 24,
 			"name": "BF NOTE LEFT MISS",
@@ -71,6 +91,10 @@
 			"offsets": [
 				-15,
 				-19
+			],
+			"camera_pos": [
+				0,
+				110
 			],
 			"anim": "singDOWNmiss",
 			"fps": 24,
@@ -83,6 +107,10 @@
 				-36,
 				27
 			],
+			"camera_pos": [
+				0,
+				-20
+			],
 			"anim": "singUPmiss",
 			"fps": 24,
 			"name": "BF NOTE UP MISS",
@@ -93,6 +121,10 @@
 			"offsets": [
 				-44,
 				22
+			],
+			"camera_pos": [
+				130,
+				0
 			],
 			"anim": "singRIGHTmiss",
 			"fps": 24,
@@ -213,7 +245,7 @@
 		209
 	],
 	"camera_position": [
-		0,
+		-90,
 		0
 	],
 	"sing_duration": 4,

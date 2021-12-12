@@ -17,6 +17,10 @@
 				189,
 				157
 			],
+			"camera_pos": [
+				-350,
+				-150		
+			],
 			"anim": "singLEFT",
 			"fps": 24,
 			"name": "Dracobot Left",
@@ -27,6 +31,10 @@
 			"offsets": [
 				93,
 				-23
+			],
+			"camera_pos": [
+				-50,
+				100		
 			],
 			"anim": "singDOWN",
 			"fps": 24,
@@ -39,6 +47,10 @@
 				57,
 				136
 			],
+			"camera_pos": [
+				-200,
+				-290		
+			],
 			"anim": "singUP",
 			"fps": 24,
 			"name": "Dracobot Up",
@@ -49,6 +61,10 @@
 			"offsets": [
 				45,
 				205
+			],
+			"camera_pos": [
+				90,
+				-150		
 			],
 			"anim": "singRIGHT",
 			"fps": 24,
@@ -61,6 +77,10 @@
 				45,
 				205
 			],
+			"camera_pos": [
+				-120,
+				-180		
+			],
 			"anim": "singRIGHT-alt",
 			"fps": 24,
 			"name": "Dracobot Shutter",
@@ -71,6 +91,10 @@
 			"offsets": [
 				45,
 				205
+			],
+			"camera_pos": [
+				-120,
+				-180		
 			],
 			"anim": "singUP-alt",
 			"fps": 24,
@@ -83,6 +107,10 @@
 				45,
 				205
 			],
+			"camera_pos": [
+				-120,
+				-180		
+			],
 			"anim": "singLEFT-alt",
 			"fps": 24,
 			"name": "Dracobot Shutter",
@@ -93,6 +121,10 @@
 			"offsets": [
 				45,
 				205
+			],
+			"camera_pos": [
+				-120,
+				-180		
 			],
 			"anim": "singDOWN-alt",
 			"fps": 24,

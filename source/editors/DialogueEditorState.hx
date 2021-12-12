@@ -54,7 +54,8 @@ class DialogueEditorState extends MusicBeatState
 			expression: 'talk',
 			text: DEFAULT_TEXT,
 			boxState: DEFAULT_BUBBLETYPE,
-			speed: 0.05
+			speed: 0.05,
+			eventToDo: ''
 		};
 
 		dialogueFile = {
@@ -165,7 +166,8 @@ class DialogueEditorState extends MusicBeatState
 			expression: defaultLine.expression,
 			text: defaultLine.text,
 			boxState: defaultLine.boxState,
-			speed: defaultLine.speed
+			speed: defaultLine.speed,
+			eventToDo: defaultLine.eventToDo
 		};
 		return copyLine;
 	}
@@ -190,7 +192,14 @@ class DialogueEditorState extends MusicBeatState
 	}
 
 	function reloadCharacter() {
-		character.frames = Paths.getSparrowAtlas('dialogue/' + character.jsonFile.image);
+		if (!character.jsonFile.specialFlags.contains('StaticPortrait'))
+		{
+			character.frames = Paths.getSparrowAtlas('dialogue/' + character.jsonFile.image);
+		}
+		else
+		{
+			character.loadGraphic(Paths.image('dialogue/' + character.jsonFile.image));
+		}
 		character.jsonFile = character.jsonFile;
 		character.reloadAnimations();
 		character.setGraphicSize(Std.int(character.width * DialogueCharacter.DEFAULT_SCALE * character.jsonFile.scale));

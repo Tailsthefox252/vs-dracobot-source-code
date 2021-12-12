@@ -361,8 +361,19 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'farmville':
-					var NeatSky = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFFACD2C3);
+			case 'fields':
+				curStage = 'fields';
+				var NeatSky = new FlxSprite(-200, -200).makeGraphic(2560, 1440, 0xFFACD2C3);
+				var ChillyFields = new FlxSprite(-200, -200 + 800).loadGraphic(Paths.image('Chilly_Fields_BG_foreground'));
+				var ChillyTrees = new FlxSprite(-200, -200).loadGraphic(Paths.image('Chilly_Fields_BG_trees'));
+				var ChillyHillz = new FlxSprite(-200, -200).loadGraphic(Paths.image('Chilly_Fields_BG_hills'));
+				ChillyFields.antialiasing = true;
+				ChillyTrees.antialiasing = true;
+				ChillyHillz.scrollFactor.set(0.1, 0.1);
+				add(NeatSky);
+				add(ChillyHillz);
+				add(ChillyFields);
+				add(ChillyTrees);
 			case 'rooftops':
 					curStage = 'rooftops';
 					roofBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('rooftops/rooftops'));
@@ -372,7 +383,6 @@ class PlayState extends MusicBeatState
 					// bg.visible = false;
 					add(roofBG);
 
-
 					curStage = 'rooftopsEvil';
 					evilBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('rooftops/rooftops_evil'));
 					evilBG.antialiasing = true;
@@ -381,6 +391,12 @@ class PlayState extends MusicBeatState
 					evilBG.visible = false;
 					add(evilBG);
 
+			case 'rooftopsEvil':
+					curStage = 'rooftopsEvil';
+					evilBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('rooftops/rooftops_evil'));
+					evilBG.antialiasing = true;
+					evilBG.scrollFactor.set(0.8, 0.8);
+					add(evilBG);
 			case 'stage': //Week 1
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);
@@ -2354,10 +2370,14 @@ class PlayState extends MusicBeatState
 								animToPlay = 'singRIGHT';
 						}
 						if(daNote.noteType == 'GF Sing') {
-							gf.playAnim(animToPlay + altAnim, true);
+							gf.playAnim(animToPlay + altAnim, true);//fix crash when hitting first note.
+							if (Math.floor(curStep / 16) > -1 && !SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
+								ArrowCamThing(gf);
 							gf.holdTimer = 0;
 						} else {
 							dad.playAnim(animToPlay + altAnim, true);
+							if (Math.floor(curStep / 16) > -1 && !SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
+								ArrowCamThing(dad);
 							dad.holdTimer = 0;
 						}
 					}
@@ -2582,14 +2602,25 @@ class PlayState extends MusicBeatState
 				switch(Std.parseInt(value1))
 				{
 					case 1:
+						isCameraOnForcedPos = false;
+						FlxTween.cancelTweensOf(FlxG.camera);
+						FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);
 						roofBG.visible = true;
 						evilBG.visible = false;
-						shakeCam = false;
+						cameraSpeed = 1;
+						FlxG.camera.shake(0.05, 0);
 					default:
+						cameraSpeed = 2.4;
+						FlxTween.cancelTweensOf(FlxG.camera);
+						isCameraOnForcedPos = true;
+						FlxTween.tween(FlxG.camera, {zoom: 2.5}, 1.5, {ease: FlxEase.cubeOut});
 						roofBG.visible = false;
+						camFollow.x = (dad.getMidpoint().x + 30);
+						camFollow.y = (dad.getMidpoint().y - 330);
 						evilBG.visible = true;
-						shakeCam = true;
+						FlxG.camera.shake(0.05, 9223372036854775807);
 						gf.playAnim('scared', true);
+
 				}
 			case 'Dracobot Warning':
 				var bruh:FlxSprite = new FlxSprite();
@@ -2598,7 +2629,7 @@ class PlayState extends MusicBeatState
 				bruh.active = false;
 				bruh.scrollFactor.set();
 				bruh.screenCenter();
-				bruh.scale.set(1.5, 1.5);
+				bruh.scale.set(1.4, 1.4);
 				add(bruh);
 				FlxTween.tween(bruh, {alpha: 0}, 1, {
 					ease: FlxEase.cubeInOut,
@@ -2891,6 +2922,7 @@ class PlayState extends MusicBeatState
 
 		if (!SONG.notes[id].mustHitSection)
 		{
+			
 			moveCamera(true);
 			
 			if (SONG.notes[id].gfSection){
@@ -3148,6 +3180,18 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	function ArrowCamThing(char:Dynamic)
+	{
+		if (!char.IsPlayer)
+		{
+			camFollow.x = (char.getMidpoint().x + (150 + char.Cammy_Offsetty[0]));
+		}	
+		else
+		{
+			camFollow.x = (char.getMidpoint().x - (100 + char.Cammy_Offsetty[0]));
+		}
+		camFollow.y = (char.getMidpoint().y - (100 - char.Cammy_Offsetty[1]));
+	}
 	#if ACHIEVEMENTS_ALLOWED
 	var achievementObj:AchievementObject = null;
 	function startAchievement(achieve:String) {
@@ -3508,11 +3552,14 @@ class PlayState extends MusicBeatState
 
 		if(daNote.noteType == 'GF Sing') {
 			gf.playAnim(animToPlay, true);
+
 		} else {
 			var daAlt = '';
 			if(daNote.noteType == 'Alt Animation') daAlt = '-alt';
 
 			boyfriend.playAnim(animToPlay + daAlt, true);
+			if (Math.floor(curStep / 16) > -1 && SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
+				ArrowCamThing(boyfriend);
 		}
 		callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
 	}
@@ -3622,6 +3669,8 @@ class PlayState extends MusicBeatState
 					gf.holdTimer = 0;
 				} else {
 					boyfriend.playAnim(animToPlay + daAlt, true);
+					if (Math.floor(curStep / 16) > -1 && SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
+						ArrowCamThing(boyfriend);
 					boyfriend.holdTimer = 0;
 				}
 

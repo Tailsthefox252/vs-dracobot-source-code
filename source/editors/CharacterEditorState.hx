@@ -472,6 +472,8 @@ class CharacterEditorState extends MusicBeatState
 	var animationNameInputText:FlxUIInputText;
 	var animationIndicesInputText:FlxUIInputText;
 	var animationNameFramerate:FlxUINumericStepper;
+	//var arrowCameraOffsetInputX:FlxUINumericStepper;//sus
+	//var arrowCameraOffsetInputY:FlxUINumericStepper; // sus
 	var animationLoopCheckBox:FlxUICheckBox;
 	function addAnimationsUI() {
 		var tab_group = new FlxUI(null, UI_box);
@@ -482,7 +484,7 @@ class CharacterEditorState extends MusicBeatState
 		animationIndicesInputText = new FlxUIInputText(animationNameInputText.x, animationNameInputText.y + 40, 250, '', 8);
 		animationNameFramerate = new FlxUINumericStepper(animationInputText.x + 170, animationInputText.y, 1, 24, 0, 240, 0);
 		animationLoopCheckBox = new FlxUICheckBox(animationNameInputText.x + 170, animationNameInputText.y - 1, null, null, "Should it Loop?", 100);
-
+		//arrowCameraOffsetInputX = new FlxUINumericStepper(arrowCameraOffsetInput.x + 170, arrowCameraOffsetInput.y, 1, -9999, 9999, 3); //cam offset shit
 		animationDropDown = new FlxUIDropDownMenuCustom(15, animationInputText.y - 55, FlxUIDropDownMenuCustom.makeStrIdLabelArray([''], true), function(pressed:String) {
 			var selectedAnimation:Int = Std.parseInt(pressed);
 			var anim:AnimArray = char.animationsArray[selectedAnimation];
@@ -524,6 +526,7 @@ class CharacterEditorState extends MusicBeatState
 			}
 
 			var lastOffsets:Array<Int> = [0, 0];
+			var lastCameraPos:Array<Dynamic> = [0, 0];
 			for (anim in char.animationsArray) {
 				if(animationInputText.text == anim.anim) {
 					lastOffsets = anim.offsets;
@@ -540,7 +543,8 @@ class CharacterEditorState extends MusicBeatState
 				fps: Math.round(animationNameFramerate.value),
 				loop: animationLoopCheckBox.checked,
 				indices: indices,
-				offsets: lastOffsets
+				offsets: lastOffsets,
+				camera_pos: lastCameraPos
 			};
 			if(indices != null && indices.length > 0) {
 				char.animation.addByIndices(newAnim.anim, newAnim.name, newAnim.indices, "", newAnim.fps, newAnim.loop);
@@ -607,10 +611,12 @@ class CharacterEditorState extends MusicBeatState
 		tab_group.add(new FlxText(animationNameFramerate.x, animationNameFramerate.y - 18, 0, 'Framerate:'));
 		tab_group.add(new FlxText(animationNameInputText.x, animationNameInputText.y - 18, 0, 'Animation on .XML/.TXT file:'));
 		tab_group.add(new FlxText(animationIndicesInputText.x, animationIndicesInputText.y - 18, 0, 'ADVANCED - Animation Indices:'));
+		//tab_group.add(new FlxText(arrowCameraOffsetInput.x, arrowCameraOffsetInput.y - 18, 0, 'Arrow Cam Offset'));
 
 		tab_group.add(animationInputText);
 		tab_group.add(animationNameInputText);
 		tab_group.add(animationIndicesInputText);
+		//tab_group.add(arrowCameraOffsetInput);
 		tab_group.add(animationNameFramerate);
 		tab_group.add(animationLoopCheckBox);
 		tab_group.add(addUpdateButton);
@@ -952,6 +958,7 @@ class CharacterEditorState extends MusicBeatState
 		}
 
 		var inputTexts:Array<FlxUIInputText> = [animationInputText, imageInputText, healthIconInputText, animationNameInputText, animationIndicesInputText];
+
 		for (i in 0...inputTexts.length) {
 			if(inputTexts[i].hasFocus) {
 				if(FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.V && Clipboard.text != null) { //Copy paste

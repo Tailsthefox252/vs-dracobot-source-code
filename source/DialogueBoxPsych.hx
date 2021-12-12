@@ -20,6 +20,8 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 import openfl.utils.Assets;
+import flixel.group.FlxGroup;
+import flixel.system.FlxSound;
 
 using StringTools;
 
@@ -52,6 +54,7 @@ typedef DialogueLine = {
 	var text:Null<String>;
 	var boxState:Null<String>;
 	var speed:Null<Float>;
+	var eventToDo:Null<String>;
 }
 
 class DialogueCharacter extends FlxSprite
@@ -75,24 +78,27 @@ class DialogueCharacter extends FlxSprite
 	{
 		super(x, y);
 
-		if(character == null) character = DEFAULT_CHARACTER;
-		this.curCharacter = character;
+		if(character != "")
+		{
+			if(character == null) character = DEFAULT_CHARACTER;
+			this.curCharacter = character;
 
-		reloadCharacterJson(character);
-		
-		if (jsonFile.specialFlags != null)
-		{
-			for (flag in jsonFile.specialFlags)
-				switch (flag)
-				{
-					case "StaticPortrait": //makes so the game doesnt use a sparrow atlas when it really doesnt need to.
-						loadGraphic(Paths.image('dialogue/' + jsonFile.image));
-				}
-		}
-		else 
-		{
-			frames = Paths.getSparrowAtlas('dialogue/' + jsonFile.image);
-			reloadAnimations();
+			reloadCharacterJson(character);
+			
+			if (jsonFile.specialFlags != null)
+			{
+				for (flag in jsonFile.specialFlags)
+					switch (flag)
+					{
+						case "StaticPortrait": //makes so the game doesnt use a sparrow atlas when it really doesnt need to.
+							loadGraphic(Paths.image('dialogue/' + jsonFile.image));
+					}
+			}
+			else 
+			{
+				frames = Paths.getSparrowAtlas('dialogue/' + jsonFile.image);
+				reloadAnimations();
+			}
 		}
 
 	}
@@ -197,6 +203,8 @@ class DialogueBoxPsych extends FlxSpriteGroup
 
 	var textBoxTypes:Array<String> = ['normal', 'angry'];
 	//var charPositionList:Array<String> = ['left', 'center', 'right'];
+
+	var SpawnedStuff:FlxTypedGroup<Dynamic> = new FlxTypedGroup<Dynamic>();
 
 	public function new(dialogueList:DialogueFile, ?song:String = null)
 	{
@@ -308,6 +316,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 
 	public function KILLHAHA()
 	{
+		destroyAdditionalObjects();
 		dialogueEnded = true;
 		for (i in 0...textBoxTypes.length)
 		{
@@ -527,6 +536,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 					}
 				}
 				finishThing();
+				destroyAdditionalObjects();
 				kill();
 			}
 		}
@@ -590,6 +600,10 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		daText = new Alphabet(DEFAULT_TEXT_X, DEFAULT_TEXT_Y, textToType, false, true, curDialogue.speed, 0.7);
 		daText.typingSound = arrayCharacters[character].curCharacter;
 
+		var PreviousCharacter = char;
+		if (character > 0)
+			PreviousCharacter = arrayCharacters[character - 1];	
+
 		if(char != null)
 		{
 			if(!char.jsonFile.specialFlags.contains('StaticPortrait')) 
@@ -605,13 +619,50 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			}
 			else 
 			{
-				if (FileSystem.exists('dialogue/' + curDialogue.expression))
+				if (Assets.exists(Paths.image('dialogue/' + curDialogue.expression)))
 				{
-					char.loadGraphic(Paths.image('dialogue/' + curDialogue.expression)); //saucyy //currently doesnt work since setting char.frames fucking breaks flxsprite
+					char.loadGraphic(Paths.image('dialogue/' + curDialogue.expression)); //WORKS //saucyy //currently doesnt work since setting char.frames fucking breaks flxsprite
 				}
 				else
 				{
 					char.loadGraphic(Paths.image('dialogue/' + char.jsonFile.image));
+				}
+				switch (curDialogue.eventToDo){
+					case 'blackout':
+						var Black = new FlxSprite().makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+						SpawnedStuff.add(Black);
+						add(Black);
+					case 'static':
+						var StaticSound = new FlxSound().loadEmbedded(Paths.sound('TheBuzz', 'week7'));
+						StaticSound.volume = 1.12;
+						StaticSound.looped = true;
+						StaticSound.play();
+						SpawnedStuff.add(StaticSound);//referring to the variable for the sound itself since if i dont do it this way i cant delete the sound with 'kill'
+					case 'loading':	
+						var FuckShit:Int = 0;
+						var CircleLol:FlxSprite = new FlxSprite(char.x + 70, char.y + char.height * 0.25);
+						CircleLol.frames = Paths.getSparrowAtlas('loading circle');
+						CircleLol.animation.addByPrefix('fuckyou', 'circle lol', 12, true);
+						CircleLol.animation.play('fuckyou');
+						CircleLol.scale.set(1.2, 1.2);
+						CircleLol.antialiasing = true;
+						SpawnedStuff.add(CircleLol);
+						var TheFunkyTimer = new FlxTimer().start(0.05, function(tmr:FlxTimer)
+						{
+								char.setColorTransform(1, 1, 1, 1, FuckShit, FuckShit, FuckShit);
+								if (FuckShit != 145)
+								{
+									FuckShit += 5;
+								}
+								else 
+								{
+									add(CircleLol);
+								}
+						}, 30);
+						SpawnedStuff.add(TheFunkyTimer);
+					case 'kill':
+						destroyAdditionalObjects();
+						PreviousCharacter.setColorTransform(1, 1, 1, 1, 0, 0, 0);
 				}
 			}
 		}
@@ -620,6 +671,13 @@ class DialogueBoxPsych extends FlxSpriteGroup
 
 		if(nextDialogueThing != null) {
 			nextDialogueThing();
+		}
+	}
+	public function destroyAdditionalObjects()
+	{
+		for (fuck in SpawnedStuff.members)
+		{
+			fuck.destroy();
 		}
 	}
 

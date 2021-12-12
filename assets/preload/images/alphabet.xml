@@ -106,10 +106,10 @@
 	<SubTexture name="A bold0001" x="855" y="0" width="54" height="67"/>
 	<SubTexture name="A bold0002" x="909" y="0" width="54" height="67"/>
 	<SubTexture name="A bold0003" x="909" y="0" width="54" height="67"/>
-	<SubTexture name="A captial0000" x="971" y="265" width="45" height="59"/>
-	<SubTexture name="A captial0001" x="971" y="265" width="45" height="59"/>
-	<SubTexture name="A captial0002" x="264" y="267" width="45" height="59"/>
-	<SubTexture name="A captial0003" x="264" y="267" width="45" height="59"/>
+	<SubTexture name="A capital0000" x="971" y="265" width="45" height="59"/>
+	<SubTexture name="A capital0001" x="971" y="265" width="45" height="59"/>
+	<SubTexture name="A capital0002" x="264" y="267" width="45" height="59"/>
+	<SubTexture name="A capital0003" x="264" y="267" width="45" height="59"/>
 	<SubTexture name="APOSTRAPHIE bold0000" x="480" y="591" width="26" height="37" frameX="-1" frameY="0" frameWidth="28" frameHeight="37"/>
 	<SubTexture name="APOSTRAPHIE bold0001" x="480" y="591" width="26" height="37" frameX="-1" frameY="0" frameWidth="28" frameHeight="37"/>
 	<SubTexture name="APOSTRAPHIE bold0002" x="56" y="582" width="28" height="37"/>

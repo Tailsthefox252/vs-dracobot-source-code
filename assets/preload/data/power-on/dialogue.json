@@ -5,7 +5,8 @@
 			"text": "This should be the right building. It looks pretty tall though. You ready, Boyfriend?",
 			"boxState": "normal",
 			"portrait": "gf",
-			"speed": 0.05
+			"speed": 0.05,
+			"eventToDo": "blackout"
 		},
 		{
 			"expression": "dshutter",
@@ -26,35 +27,40 @@
 			"text": "The bluetooth speakers should be connected now...",
 			"boxState": "normal",
 			"speed": 0.05,
-			"portrait": "dracobot"
+			"portrait": "dracobot",
+			"eventToDo": "kill"
 		},
 		{
 			"expression": "dracobot",
 			"text": "hm?..",
 			"boxState": "normal",
 			"speed": 0.095,
-			"portrait": "dracobot"
+			"portrait": "dracobot",
+			"eventToDo": "loading"
 		},
 		{
 			"expression": "dracobot",
 			"text": "Oh! Hey guys! Over here! You're just in time!",
 			"boxState": "normal",
 			"speed": 0.05,
-			"portrait": "dracobot"
+			"portrait": "dracobot",
+			"eventToDo": "kill"
 		},
 		{
 			"expression": "dracobot",
-			"text": "I'm so happy you made it here! It's been 5 years since I last saw you, Broski!",
+			"text": "I'm so happy you made it here! It's been 5 years since I last saw you, broski!",
 			"boxState": "normal",
 			"speed": 0.03,
-			"portrait": "dracobot"
+			"portrait": "dracobot",
+			"eventToDo": "static"
 		},
 		{
 			"expression": "talk",
-			"text": "It's surely something that we met again in Splatters the other day.",
+			"text": "It's surely something that we met again in Splatoon 2 the other day.",
 			"boxState": "normal",
 			"speed": 0.035,
-			"portrait": "dracobot"
+			"portrait": "dracobot",
+			"eventToDo": "kill"
 		},
 		{
 			"expression": "biff",
@@ -152,7 +158,7 @@
 			"portrait": "gf",
 			"boxState": "normal",
 			"expression": "giff",
-			"text": "...Hey? Why is there an outline there?"
+			"text": "...Hey? Why is there body tape near the air vents?"
 		},
 		{
 			"speed": 0.05,
@@ -166,14 +172,14 @@
 			"portrait": "gf",
 			"boxState": "normal",
 			"expression": "giff",
-			"text": "What about the pair of shoes with a note on it?"
+			"text": "What about the pair of shoes with a note on it? Did a murder-suicide occur here?"
 		},
 		{
 			"speed": 0.05,
 			"portrait": "dracobot",
 			"boxState": "normal",
 			"expression": "dracobot",
-			"text": "I don't know about that either. Sorry..."
+			"text": "I don't know about that either. Sorry... I'm honestly surprised it's still there though."
 		},
 		{
 			"speed": 0.05,

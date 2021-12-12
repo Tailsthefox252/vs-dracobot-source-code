@@ -39,11 +39,14 @@ typedef AnimArray = {
 	var loop:Bool;
 	var indices:Array<Int>;
 	var offsets:Array<Int>;
+	var camera_pos:Array<Dynamic>;
 }
 
 class Character extends FlxSprite
 {
+	public var Cammy_Offsetty:Array<Dynamic>;
 	public var animOffsets:Map<String, Array<Dynamic>>;
+	public var camFocusMap:Map<String, Array<Dynamic>>;
 	public var debugMode:Bool = false;
 
 	public var isPlayer:Bool = false;
@@ -61,6 +64,7 @@ class Character extends FlxSprite
 
 	public var healthIcon:String = 'face';
 	public var animationsArray:Array<AnimArray> = [];
+
 
 	public var positionArray:Array<Float> = [0, 0];
 	public var cameraPosition:Array<Float> = [0, 0];
@@ -80,7 +84,9 @@ class Character extends FlxSprite
 
 		#if (haxe >= "4.0.0")
 		animOffsets = new Map();
+		camFocusMap = new Map();
 		#else
+		camFocusMap = new Map<String, Array<Dynamic>>();
 		animOffsets = new Map<String, Array<Dynamic>>();
 		#end
 		curCharacter = character;
@@ -154,13 +160,18 @@ class Character extends FlxSprite
 						var animFps:Int = anim.fps;
 						var animLoop:Bool = !!anim.loop; //Bruh
 						var animIndices:Array<Int> = anim.indices;
+						if(anim.camera_pos != null && anim.camera_pos.length > 1)
+						{
+							camFocusMap[anim.anim] = [anim.camera_pos[0], anim.camera_pos[1]];
+						}
 						if(animIndices != null && animIndices.length > 0) {
 							animation.addByIndices(animAnim, animName, animIndices, "", animFps, animLoop);
 						} else {
 							animation.addByPrefix(animAnim, animName, animFps, animLoop);
 						}
 
-						if(anim.offsets != null && anim.offsets.length > 1) {
+						if(anim.offsets != null && anim.offsets.length > 1) 
+						{
 							addOffset(anim.anim, anim.offsets[0], anim.offsets[1]);
 						}
 					}
@@ -272,6 +283,13 @@ class Character extends FlxSprite
 	{
 		specialAnim = false;
 		animation.play(AnimName, Force, Reversed, Frame);
+
+		if (camFocusMap.exists(AnimName)){
+			Cammy_Offsetty = camFocusMap.get(AnimName);
+		}
+		else {
+			Cammy_Offsetty = cameraPosition;
+		}
 
 		var daOffset = animOffsets.get(AnimName);
 		if (animOffsets.exists(AnimName))
