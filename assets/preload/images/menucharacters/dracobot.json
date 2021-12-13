@@ -2,9 +2,9 @@
 	"idle_anim": "Idle",
 	"image": "draco campaign",
 	"position": [
-		0,
-		10
+		280,
+		260
 	],
-	"scale": 1,
+	"scale": 0.4,
 	"confirm_anim": "Idle"
 }
