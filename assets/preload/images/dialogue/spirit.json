@@ -1,64 +1,27 @@
 {
 	"position": [
-		300,
-		125
+		250,
+		-85
 	],
 	"dialogue_pos": "left",
 	"scale": 6.5,
 	"image": "spirit",
+	"graphicsprites": [],
 	"animations": [
 		{
 			"idle_offsets": [
-				-1,
-				-11
+				-3,
+				-6
 			],
 			"loop_offsets": [
 				0,
-				0
+				1
 			],
 			"anim": "talk",
-			"idle_name": "BF0",
-			"loop_name": "BF LOOP"
-		},
-		{
-			"idle_offsets": [
-				4,
-				-8
-			],
-			"anim": "excited",
-			"loop_offsets": [
-				5,
-				0
-			],
-			"idle_name": "BF EXCITED0",
-			"loop_name": "BF EXCITED LOOP"
-		},
-		{
-			"idle_offsets": [
-				0,
-				0
-			],
-			"anim": "pissed",
-			"loop_offsets": [
-				0,
-				0
-			],
-			"idle_name": "BF PISSED0",
-			"loop_name": "BF PISSED LOOP"
-		},
-		{
-			"idle_offsets": [
-				-6,
-				-11
-			],
-			"anim": "shocked",
-			"loop_offsets": [
-				-4,
-				0
-			],
-			"idle_name": "BF SHOCK0",
-			"loop_name": "BF SHOCK LOOP"
+			"idle_name": "GF0",
+			"loop_name": "GF LOOP"
 		}
 	],
-	"specialFlags": ["StaticPortrait"]
+	"specialFlags": ["StaticPortrait"],
+	"antialiasing": false
 }

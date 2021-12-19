@@ -18,8 +18,8 @@
 				157
 			],
 			"camera_pos": [
-				-350,
-				-150		
+				-220,
+				-90
 			],
 			"anim": "singLEFT",
 			"fps": 24,
@@ -33,8 +33,8 @@
 				-23
 			],
 			"camera_pos": [
-				-50,
-				100		
+				-160,
+				80
 			],
 			"anim": "singDOWN",
 			"fps": 24,
@@ -48,8 +48,8 @@
 				136
 			],
 			"camera_pos": [
-				-200,
-				-290		
+				-160,
+				-150	
 			],
 			"anim": "singUP",
 			"fps": 24,
@@ -63,8 +63,8 @@
 				205
 			],
 			"camera_pos": [
-				90,
-				-150		
+				70,
+				-90
 			],
 			"anim": "singRIGHT",
 			"fps": 24,
@@ -146,7 +146,7 @@
 		75
 	],
 	"camera_position": [
-		0,
+		-160,
 		0
 	],
 	"sing_duration": 4,

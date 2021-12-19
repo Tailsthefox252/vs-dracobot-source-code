@@ -25,6 +25,7 @@ class ClientPrefs {
 	public static var ghostTapping:Bool = true;
 	public static var hideTime:Bool = false;
 	public static var warningScreen:Bool = true;
+	public static var arroCamMove:Bool = true;
 
 	//Every key has two binds, these binds are defined on defaultKeys! If you want your control to be changeable, you have to add it on ControlsSubState (inside OptionsState.hx)'s list
 	public static var keyBinds:Map<String, Dynamic> = new Map<String, Dynamic>();
@@ -53,6 +54,7 @@ class ClientPrefs {
 	}
 
 	public static function saveSettings() {
+		FlxG.save.data.arroCamMove = arroCamMove;
 		FlxG.save.data.warningScreen = warningScreen;
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.middleScroll = middleScroll;
@@ -85,6 +87,9 @@ class ClientPrefs {
 	public static function loadPrefs() {
 		if (FlxG.save.data.warningScreen != null)
 			warningScreen = FlxG.save.data.warningScreen; //funny done by RushFox, play Reinked or die.
+
+		if (FlxG.save.data.arroCamMove != null)
+			arroCamMove = FlxG.save.data.arroCamMove;
 
 		if(FlxG.save.data.downScroll != null) {
 			downScroll = FlxG.save.data.downScroll;

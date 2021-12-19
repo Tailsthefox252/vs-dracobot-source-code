@@ -364,16 +364,18 @@ class PlayState extends MusicBeatState
 			case 'fields':
 				curStage = 'fields';
 				var NeatSky = new FlxSprite(-200, -200).makeGraphic(2560, 1440, 0xFFACD2C3);
-				var ChillyFields = new FlxSprite(-200, -200 + 800).loadGraphic(Paths.image('Chilly_Fields_BG_foreground'));
-				var ChillyTrees = new FlxSprite(-200, -200).loadGraphic(Paths.image('Chilly_Fields_BG_trees'));
+				var ChillyFields = new FlxSprite(-420, -200 + 800).loadGraphic(Paths.image('Chilly_Fields_BG_foreground'));
+				var ChillyTrees = new FlxSprite(-340, -200).loadGraphic(Paths.image('fields_trees'));
 				var ChillyHillz = new FlxSprite(-200, -200).loadGraphic(Paths.image('Chilly_Fields_BG_hills'));
+				ChillyTrees.setGraphicSize(Std.int(ChillyTrees.width * 2));
+				ChillyTrees.updateHitbox();
 				ChillyFields.antialiasing = true;
 				ChillyTrees.antialiasing = true;
 				ChillyHillz.scrollFactor.set(0.1, 0.1);
 				add(NeatSky);
 				add(ChillyHillz);
-				add(ChillyFields);
 				add(ChillyTrees);
+				add(ChillyFields);
 			case 'rooftops':
 					curStage = 'rooftops';
 					roofBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('rooftops/rooftops'));
@@ -1046,7 +1048,7 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
-				case 'power-on' | 'error-404' | 'scan':
+				case 'power-on' | 'error-404' | 'scan' | 'solder':
 					startDialogue(dialogueJson);
 				default:
 					startCountdown();
@@ -2371,12 +2373,12 @@ class PlayState extends MusicBeatState
 						}
 						if(daNote.noteType == 'GF Sing') {
 							gf.playAnim(animToPlay + altAnim, true);//fix crash when hitting first note.
-							if (Math.floor(curStep / 16) > -1 && !SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
+							if (FlxG.save.data.arroCamMove && Math.floor(curStep / 16) > -1 && !SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
 								ArrowCamThing(gf);
 							gf.holdTimer = 0;
 						} else {
 							dad.playAnim(animToPlay + altAnim, true);
-							if (Math.floor(curStep / 16) > -1 && !SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
+							if (FlxG.save.data.arroCamMove && Math.floor(curStep / 16) > -1 && !SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
 								ArrowCamThing(dad);
 							dad.holdTimer = 0;
 						}
@@ -3184,13 +3186,13 @@ class PlayState extends MusicBeatState
 	{
 		if (!char.IsPlayer)
 		{
-			camFollow.x = (char.getMidpoint().x + (150 + char.Cammy_Offsetty[0]));
+			camFollow.x = (char.getMidpoint().x + 150) + char.Cammy_Offsetty[0];
 		}	
 		else
 		{
-			camFollow.x = (char.getMidpoint().x - (100 + char.Cammy_Offsetty[0]));
+			camFollow.x = (char.getMidpoint().x - 100) - char.Cammy_Offsetty[0];
 		}
-		camFollow.y = (char.getMidpoint().y - (100 - char.Cammy_Offsetty[1]));
+		camFollow.y = (char.getMidpoint().y - 100) + char.Cammy_Offsetty[1];
 	}
 	#if ACHIEVEMENTS_ALLOWED
 	var achievementObj:AchievementObject = null;
@@ -3558,7 +3560,7 @@ class PlayState extends MusicBeatState
 			if(daNote.noteType == 'Alt Animation') daAlt = '-alt';
 
 			boyfriend.playAnim(animToPlay + daAlt, true);
-			if (Math.floor(curStep / 16) > -1 && SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
+			if (FlxG.save.data.arroCamMove && Math.floor(curStep / 16) > -1 && SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
 				ArrowCamThing(boyfriend);
 		}
 		callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
@@ -3669,7 +3671,7 @@ class PlayState extends MusicBeatState
 					gf.holdTimer = 0;
 				} else {
 					boyfriend.playAnim(animToPlay + daAlt, true);
-					if (Math.floor(curStep / 16) > -1 && SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
+					if (FlxG.save.data.arroCamMove && Math.floor(curStep / 16) > -1 && SONG.notes[Math.floor(curStep / 16)].mustHitSection && !isCameraOnForcedPos)
 						ArrowCamThing(boyfriend);
 					boyfriend.holdTimer = 0;
 				}

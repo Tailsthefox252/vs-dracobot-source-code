@@ -2,7 +2,6 @@
 	"position": [
 		20,
 		135
-		
 	],
 	"dialogue_pos": "center",
 	"scale": 1.5,
@@ -20,45 +19,6 @@
 			"anim": "talk",
 			"idle_name": "GF0",
 			"loop_name": "GF LOOP"
-		},
-		{
-			"idle_offsets": [
-				70,
-				-11
-			],
-			"anim": "shocked",
-			"loop_offsets": [
-				70,
-				0
-			],
-			"idle_name": "GF SHOCK0",
-			"loop_name": "GF SHOCK LOOP"
-		},
-		{
-			"idle_offsets": [
-				-3,
-				-6
-			],
-			"anim": "confused",
-			"loop_offsets": [
-				0,
-				0
-			],
-			"idle_name": "GF CONFUSED0",
-			"loop_name": "GF CONFUSED LOOP"
-		},
-		{
-			"idle_offsets": [
-				-3,
-				-6
-			],
-			"anim": "demon",
-			"loop_offsets": [
-				0,
-				0
-			],
-			"idle_name": "GF DEMON0",
-			"loop_name": "GF DEMON LOOP"
 		}
 	],
 	"specialFlags": ["StaticPortrait"]

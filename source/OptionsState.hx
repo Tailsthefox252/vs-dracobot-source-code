@@ -731,6 +731,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Hide Song Length',
 		'MISCELLANEOUS',
 		'Warning Screen',
+		'Camera Moves With Arrows',
 		#if !mobile
 		'FPS Counter'
 		#end
@@ -900,6 +901,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 					case 'Warning Screen':
 						ClientPrefs.warningScreen = !ClientPrefs.warningScreen; //porting this done by RushFox, play Maginage Matches
 
+					case 'Camera Moves With Arrows':
+						ClientPrefs.arroCamMove = !ClientPrefs.arroCamMove;
+
 					case 'Downscroll':
 						ClientPrefs.downScroll = !ClientPrefs.downScroll;
 
@@ -1002,6 +1006,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 				daText = "If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.";
 			case 'Warning Screen':
 				daText = "If unchecked, disables the warning screen at the \n beginning of the game.";
+			case 'Camera Moves With Arrows':
+				daText = "If checked, the camera will move when you \n or the opponent hit arrows.";
 			case 'Swearing':
 				daText = "If unchecked, your mom won't be angry at you.";
 			case 'Violence':
@@ -1078,6 +1084,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daValue = ClientPrefs.ghostTapping;
 					case 'Warning Screen':
 						daValue = ClientPrefs.warningScreen;
+					case 'Camera Moves With Arrows':
+						daValue = ClientPrefs.arroCamMove;
 					case 'Swearing':
 						daValue = ClientPrefs.cursing;
 					case 'Violence':

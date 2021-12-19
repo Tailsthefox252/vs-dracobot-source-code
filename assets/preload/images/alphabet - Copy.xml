@@ -174,10 +174,10 @@
 	<SubTexture name="J bold0001" x="112" y="0" width="54" height="70"/>
 	<SubTexture name="J bold0002" x="166" y="0" width="54" height="70"/>
 	<SubTexture name="J bold0003" x="166" y="0" width="54" height="70"/>
-	<SubTexture name="J captial0000" x="170" y="267" width="39" height="54" pivotX="0.05" pivotY="0"/>
-	<SubTexture name="J captial0001" x="170" y="267" width="39" height="54"/>
-	<SubTexture name="J captial0002" x="209" y="267" width="39" height="54"/>
-	<SubTexture name="J captial0003" x="209" y="267" width="39" height="54"/>
+	<SubTexture name="J capital0000" x="170" y="267" width="39" height="54" pivotX="0.05" pivotY="0"/>
+	<SubTexture name="J capital0001" x="170" y="267" width="39" height="54"/>
+	<SubTexture name="J capital0002" x="209" y="267" width="39" height="54"/>
+	<SubTexture name="J capital0003" x="209" y="267" width="39" height="54"/>
 	<SubTexture name="K bold0000" x="599" y="126" width="44" height="69" pivotX="0" pivotY="0.05"/>
 	<SubTexture name="K bold0001" x="599" y="126" width="44" height="69"/>
 	<SubTexture name="K bold0002" x="643" y="129" width="44" height="69"/>

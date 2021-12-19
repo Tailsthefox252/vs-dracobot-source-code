@@ -63,7 +63,7 @@
 				-7
 			],
 			"camera_pos": [
-				20,
+				40,
 				0
 			],
 			"anim": "singRIGHT",
@@ -78,7 +78,7 @@
 				19
 			],
 			"camera_pos": [
-				-50,
+				-260,
 				0
 			],
 			"anim": "singLEFTmiss",
@@ -93,8 +93,8 @@
 				-19
 			],
 			"camera_pos": [
-				0,
-				110
+				-90,
+				150
 			],
 			"anim": "singDOWNmiss",
 			"fps": 24,
@@ -108,8 +108,8 @@
 				27
 			],
 			"camera_pos": [
-				0,
-				-20
+				-110,
+				-50
 			],
 			"anim": "singUPmiss",
 			"fps": 24,
@@ -123,7 +123,7 @@
 				22
 			],
 			"camera_pos": [
-				130,
+				20,
 				0
 			],
 			"anim": "singRIGHTmiss",

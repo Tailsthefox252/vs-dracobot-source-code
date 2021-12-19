@@ -94,6 +94,27 @@ class DFJKOption extends Option //J: the class names are supposed to be kind of 
 	}
 }
 
+class arroCamMoveOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.arroCamMove = !FlxG.save.data.arroCamMove;
+		display = updateDisplay();
+		return true;
+
+		public override function updateDisplay():String
+		{
+			return FlxG.save.data.arroCamMove ? 'Camera Moves With Arrows' : 'Camera Does Not Move With Arrows';
+		}
+	}
+}
+
 class WarningOption extends Option
 {
 	public function new(desc:String)

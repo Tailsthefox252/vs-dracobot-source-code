@@ -68,6 +68,7 @@ class OptionsMenu extends MusicBeatState
 			new GraphicLoading("On startup, cache every character. Significantly decrease load times. (HIGH MEMORY)"),
 			new BotPlay("Showcase your charts and mods with autoplay."),
 			new WarningOption("Turn on and off the warning screen at the beginning of the mod.")
+			new arroCamMoveOption("If on, the camera moves with every note you hit.")
 		]),
 
 		new OptionCategory("Saves and Data", [
