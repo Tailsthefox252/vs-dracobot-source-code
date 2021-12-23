@@ -164,7 +164,7 @@
 			"speed": 0,
 			"portrait": "bf",
 			"eventToDo": "",
-			"boxState": "normal",
+			"boxState": "blank",
 			"expression": "talk",
 			"text": "*Dracobot proceeds to remove the disc from his arm*"
 		},
@@ -180,7 +180,7 @@
 			"speed": 0.05,
 			"portrait": "dracobot",
 			"eventToDo": "",
-			"boxState": "blank",
+			"boxState": "normal",
 			"expression": "talk",
 			"text": "And please keep that disc somewhere safe next time..."
 		},
@@ -318,7 +318,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Shit hurt like hell when that happened and I don't wanna deal with that again."
+			"text": "Shit hurted like hell when that happened and I don't wanna deal with that again."
 		},
 		{
 			"speed": 0.05,
