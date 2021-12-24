@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-182,
+				10
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "Idle"
+		},
+		{
+			"offsets": [
+				-164,
+				8
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Left"
+		},
+		{
+			"offsets": [
+				-80,
+				-114
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Down"
+		},
+		{
+			"offsets": [
+				-146,
+				21
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "Up"
+		},
+		{
+			"offsets": [
+				-180,
+				32
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "RIght"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/enkeiko",
+	"position": [
+		-20,
+		140
+	],
+	"healthicon": "enkeiko",
+	"flip_x": false,
+	"healthbar_colors": [
+		62,
+		96,
+		221
+	],
+	"camera_position": [
+		-30,
+		-20
+	],
+	"sing_duration": 4,
+	"scale": 1.2
+}

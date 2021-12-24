@@ -1,8 +1,8 @@
 {
 	"songs": [
-		["Blue Ball", "olevadon", [89, 216, 255]],
-		["Spherical", "olevadon", [89, 216, 255]],
-		["Shepherd", "angyDracobot", [255, 120, 191]]
+		["Blue Ball", "olevadon", [0, 192, 255]],
+		["Spherical", "olevadon", [0, 192, 255]],
+		["Shepherd", "shepherd", [62, 116, 221]]
 	],
 
 	"weekCharacters": [
