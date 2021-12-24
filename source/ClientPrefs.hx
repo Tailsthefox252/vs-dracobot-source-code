@@ -5,6 +5,7 @@ import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
+import BonusScreens.UnlockScreen;
 
 class ClientPrefs {
 	public static var downScroll:Bool = false;
@@ -78,13 +79,19 @@ class ClientPrefs {
 		FlxG.save.flush();
 
 		var save:FlxSave = new FlxSave();
-		save.bind('controls_v2', 'ninjamuffin99'); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
+		save.bind('controls_v2', 'Dracobot'); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
 		save.data.customControls = keyBinds;
 		save.flush();
 		FlxG.log.add("Settings saved!");
 	}
 
 	public static function loadPrefs() {
+
+		if (FlxG.save.data.CrusadeAchievementsThing == null)
+		{
+			FlxG.save.data.CrusadeAchievementsThing = [];
+			FlxG.save.flush();
+		}
 		if (FlxG.save.data.warningScreen != null)
 			warningScreen = FlxG.save.data.warningScreen; //funny done by RushFox, play Reinked or die.
 

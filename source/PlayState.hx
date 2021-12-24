@@ -49,6 +49,7 @@ import Achievements;
 import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
+import BonusScreens.UnlockScreen;
 
 #if sys
 import sys.FileSystem;
@@ -254,6 +255,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		trace(storyWeek);
 		#if MODS_ALLOWED
 		Paths.destroyLoadedImages(resetSpriteCache);
 		#end
@@ -3098,19 +3100,15 @@ class PlayState extends MusicBeatState
 
 				if (storyPlaylist.length <= 0)
 				{
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
-
+					UnlockScreen.saveAndUnlockStuff();
 					cancelFadeTween();
 					CustomFadeTransition.nextCamera = camOther;
 					if(FlxTransitionableState.skipNextTransIn) {
 						CustomFadeTransition.nextCamera = null;
 					}
-					MusicBeatState.switchState(new StoryMenuState());
-
 					// if ()
 					if(!usedPractice) {
 						StoryMenuState.weekCompleted.set(WeekData.weeksList[storyWeek], true);
-
 						if (SONG.validScore)
 						{
 							Highscore.saveWeekScore(WeekData.getWeekFileName(), campaignScore, storyDifficulty);
@@ -3118,7 +3116,18 @@ class PlayState extends MusicBeatState
 
 						FlxG.save.data.weekCompleted = StoryMenuState.weekCompleted;
 						FlxG.save.flush();
+
+							//if (Highscore.weekScores.get['week1done'] = null)
+								//CrusadeAchievementsGotten.push('week1done');
+						//	if (Highscore.weekScores.get['week2done'] = null)
+						//		CrusadeAchievementsGotten.push('week2done');
+						//	if (Highscore.weekScores.get['week1done'] = null && Highscore.weekScores['week2done'] = null)
+						//		CrusadeAchievementsGotten.push('bothweeksdone');
+						//	if (CrusadeAchievementsGotten.length > 0)
+						//		UnlockScreen.messagesToDisplay = CrusadeAchievementsGotten;
+						
 					}
+
 					usedPractice = false;
 					changedDifficulty = false;
 					cpuControlled = false;

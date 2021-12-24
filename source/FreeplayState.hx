@@ -91,6 +91,24 @@ class FreeplayState extends MusicBeatState
 			}
 		}
 
+		var Temporary:Array<String> = FlxG.save.data.CrusadeAchievementsThing;
+		trace(Temporary);
+		//need to use the temporary thing to convert the achievements from dynamic to an array string;
+		for (i in 0...Temporary.length)
+		{
+			switch(Temporary[i])
+			{
+				case 'bothweeksdone':
+					addSong('eyeball', 9, 'nacidio', FlxColor.fromRGB(1,1,1));
+				case 'week2done':
+					addSong('orb', 8, 'olevadon', FlxColor.fromRGB(1, 1, 1));
+					addSong('mystery', 8, 'olevadon', FlxColor.fromRGB(1, 1, 1));
+				case 'week1done':
+					addSong('output', 7, 'dracobot', FlxColor.fromRGB(1, 1, 1));
+					addSong('dragonsnaps', 7, 'angyDracobot', FlxColor.fromRGB(1,1,1));
+			}
+		}
+
 		// LOAD MUSIC
 
 		// LOAD CHARACTERS
