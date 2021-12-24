@@ -99,13 +99,13 @@ class FreeplayState extends MusicBeatState
 			switch(Temporary[i])
 			{
 				case 'bothweeksdone':
-					addSong('eyeball', 9, 'nacidio', FlxColor.fromRGB(1,1,1));
+					addSong('eyeball', 9, 'nacidio', FlxColor.fromRGB(186,31,26));
 				case 'week2done':
-					addSong('orb', 8, 'olevadon', FlxColor.fromRGB(1, 1, 1));
-					addSong('mystery', 8, 'olevadon', FlxColor.fromRGB(1, 1, 1));
+					addSong('orb', 8, 'olevadon', FlxColor.fromRGB(0,192,255));
+					addSong('mystery', 8, 'olevadon', FlxColor.fromRGB(0,192,255));
 				case 'week1done':
-					addSong('output', 7, 'dracobot', FlxColor.fromRGB(1, 1, 1));
-					addSong('dragonsnaps', 7, 'angyDracobot', FlxColor.fromRGB(1,1,1));
+					addSong('output', 7, 'dracobot', FlxColor.fromRGB(233,245,73));
+					addSong('dragonsnaps', 7, 'angyDracobot', FlxColor.fromRGB(255,105,74));
 			}
 		}
 
