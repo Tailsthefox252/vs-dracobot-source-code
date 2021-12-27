@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="dracorock.png">
+	<!-- Created with Adobe Animate version 20.0.0.17400 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="He jammin0000" x="0" y="0" width="357" height="399" frameX="0" frameY="-4" frameWidth="357" frameHeight="407"/>
+	<SubTexture name="He jammin0001" x="357" y="0" width="357" height="402" frameX="0" frameY="-2" frameWidth="357" frameHeight="407"/>
+	<SubTexture name="He jammin0002" x="0" y="402" width="357" height="404" frameX="0" frameY="-1" frameWidth="357" frameHeight="407"/>
+	<SubTexture name="He jammin0003" x="357" y="402" width="357" height="407"/>
+</TextureAtlas>

@@ -86,12 +86,6 @@ class ClientPrefs {
 	}
 
 	public static function loadPrefs() {
-
-		if (FlxG.save.data.CrusadeAchievementsThing == null)
-		{
-			FlxG.save.data.CrusadeAchievementsThing = [];
-			FlxG.save.flush();
-		}
 		if (FlxG.save.data.warningScreen != null)
 			warningScreen = FlxG.save.data.warningScreen; //funny done by RushFox, play Reinked or die.
 

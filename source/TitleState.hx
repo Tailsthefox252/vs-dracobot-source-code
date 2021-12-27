@@ -118,6 +118,12 @@ class TitleState extends MusicBeatState
 		{
 			StoryMenuState.weekCompleted = FlxG.save.data.weekCompleted;
 		}
+		
+		if (FlxG.save.data.CrusadeAchievementsThing == null)
+		{
+			FlxG.save.data.CrusadeAchievementsThing = [];
+			FlxG.save.flush();
+		}
 
 		FlxG.mouse.visible = false;
 		#if FREEPLAY

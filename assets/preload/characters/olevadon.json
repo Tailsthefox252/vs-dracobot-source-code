@@ -60,7 +60,7 @@
 	"image": "characters/olevadon_assets",
 	"position": [
 		0,
-		400
+		0
 	],
 	"healthicon": "icon-olevadon",
 	"flip_x": false,
