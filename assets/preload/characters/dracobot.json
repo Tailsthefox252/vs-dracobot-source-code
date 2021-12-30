@@ -1,75 +1,75 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				183
 			],
-			"anim": "idle",
+			"loop": false,
 			"fps": 24,
-			"name": "Idle",
-			"indices": []
+			"anim": "idle",
+			"indices": [],
+			"name": "Idle"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				120,
-				175
+				125,
+				158
 			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
 			"camera_pos": [
 				-220,
 				-90
 			],
-			"anim": "singLEFT",
-			"fps": 24,
-			"name": "Left",
-			"indices": []
+			"indices": [],
+			"name": "Left"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				66,
-				25
+				15
 			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
 			"camera_pos": [
 				-160,
 				80
 			],
-			"anim": "singDOWN",
-			"fps": 24,
-			"name": "Down",
-			"indices": []
+			"indices": [],
+			"name": "Down"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				-66,
-				325
+				-76,
+				305
 			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
 			"camera_pos": [
 				-160,
 				-150
 			],
-			"anim": "singUP",
-			"fps": 24,
-			"name": "Up",
-			"indices": []
+			"indices": [],
+			"name": "Up"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				0,
-				225
+				-20,
+				205
 			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
 			"camera_pos": [
 				70,
 				-90
 			],
-			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "Right",
-			"indices": []
+			"indices": [],
+			"name": "Right"
 		}
 	],
 	"no_antialiasing": false,
@@ -81,9 +81,9 @@
 	"healthicon": "icon-dracobot",
 	"flip_x": false,
 	"healthbar_colors": [
-		255,
-		255,
-		0
+		233,
+		245,
+		73
 	],
 	"camera_position": [
 		-160,
