@@ -14,6 +14,8 @@ import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
 import sys.FileSystem;
 import lime.utils.Assets;
+import flixel.math.FlxRandom;
+import flixel.tweens.FlxEase;
 
 using StringTools;
 
@@ -29,9 +31,12 @@ class CreditsState extends MusicBeatState
 	var descText:FlxText;
 	var intendedColor:Int;
 	var colorTween:FlxTween;
+	public static var Error404EasterEggTriggered = false;
+	var triggeredFunnyMemeSpinAlt = false;
 
 	override function create()
 	{
+		triggeredFunnyMemeSpinAlt = FlxG.random.bool(4.2069);
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
@@ -62,6 +67,14 @@ class CreditsState extends MusicBeatState
 		
 		#end
 		var pisspoop = [ //Name - Icon name - Description - Link - BG Color
+		['Vs Dracobot'],
+		['Dracobot', 'draco_psych_icon', 'Director, Spriter, Charter and Animator', 'https://mobile.twitter.com/Dracobot950', '0xFFFFDD33'],
+		['Lyre101',	'lyre_psychengine_credit_icon',	'Composer', 'https://www.youtube.com/channel/UCBtV3r4Q1-jXdm_j1GgQYtg', '0xFFFFDD33'],
+		['Mojo', 'mojo_psych_icon', 'Composer','https://gamebanana.com/mods/325970', '0xFFFFDD33'],
+		['T1GD', 'T1GD_psych_icon', 'Composer', 'https://www.youtube.com/channel/UCsJgo-wOhHe9R9TvScLejsA/featured', '0xFFFFDD33'],
+		['Numbskill', 'numbskilll_psych_icon', 'Dracobot Voice Actor', 'https://twitter.com/Numbskill4Real', '0xFFFFDD33'],
+		['AshoXD', 'credit-icons', 'Composer, Charter and Animator', 'https://twitter.com/ashomoment', '0xFFFFDD33'],//asho why u icon just called credit-icons.png what
+		['RushFox', 'stupid_dumb_fuck', 'Coder for Update 2', 'https://greyslamgrimlock.newgrounds.com/', '0xFFFFDD33'],
 		['Psych Engine Team'],
 		['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',					'https://twitter.com/Shadow_Mario_',	'0xFFFFDD33'],
 		['RiverOaken',			'riveroaken',		'Main Artist/Animator of Psych Engine',				'https://twitter.com/river_oaken',		'0xFFC30085'],
@@ -121,10 +134,37 @@ class CreditsState extends MusicBeatState
 		intendedColor = bg.color;
 		changeSelection();
 		super.create();
+
+		Conductor.changeBPM(182);
+
+		if (FlxG.sound.music != null)
+			Conductor.songPosition = FlxG.sound.music.time;
+
+		persistentUpdate = true;
+		
 	}
 
+	override function beatHit()
+	{
+		FlxG.log.add('ROK');
+		Conductor.songPosition = FlxG.sound.music.time;
+		if (Error404EasterEggTriggered)
+		{
+			trace('Speen');
+			for (i in iconArray)
+			{
+				i.angleAdd = 0;
+				if (triggeredFunnyMemeSpinAlt)
+					FlxTween.tween(i, {angleAdd: 360}, 0.3);
+				else
+					FlxTween.tween(i, {angleAdd: 360}, 0.2, {ease: FlxEase.quintOut});
+			}
+		}
+
+	}
 	override function update(elapsed:Float)
 	{
+		Conductor.songPosition = FlxG.sound.music.time;
 		if (FlxG.sound.music.volume < 0.7)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
@@ -140,6 +180,7 @@ class CreditsState extends MusicBeatState
 		if (downP)
 		{
 			changeSelection(1);
+			trace(Error404EasterEggTriggered);
 		}
 
 		if (controls.BACK)

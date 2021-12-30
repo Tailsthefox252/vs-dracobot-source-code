@@ -11,7 +11,6 @@ class ClientPrefs {
 	public static var downScroll:Bool = false;
 	public static var middleScroll:Bool = false;
 	public static var showFPS:Bool = true;
-	public static var flashing:Bool = true;
 	public static var globalAntialiasing:Bool = true;
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
@@ -27,6 +26,7 @@ class ClientPrefs {
 	public static var hideTime:Bool = false;
 	public static var warningScreen:Bool = true;
 	public static var arroCamMove:Bool = true;
+	public static var fullscreen:Bool = false;
 
 	//Every key has two binds, these binds are defined on defaultKeys! If you want your control to be changeable, you have to add it on ControlsSubState (inside OptionsState.hx)'s list
 	public static var keyBinds:Map<String, Dynamic> = new Map<String, Dynamic>();
@@ -55,12 +55,12 @@ class ClientPrefs {
 	}
 
 	public static function saveSettings() {
+		FlxG.save.data.fullscreen = fullscreen;
 		FlxG.save.data.arroCamMove = arroCamMove;
 		FlxG.save.data.warningScreen = warningScreen;
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.middleScroll = middleScroll;
 		FlxG.save.data.showFPS = showFPS;
-		FlxG.save.data.flashing = flashing;
 		FlxG.save.data.globalAntialiasing = globalAntialiasing;
 		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.lowQuality = lowQuality;
@@ -79,7 +79,7 @@ class ClientPrefs {
 		FlxG.save.flush();
 
 		var save:FlxSave = new FlxSave();
-		save.bind('controls_v2', 'Dracobot'); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
+		save.bind('controls_v2', 'Controls'); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
 		save.data.customControls = keyBinds;
 		save.flush();
 		FlxG.log.add("Settings saved!");
@@ -89,6 +89,9 @@ class ClientPrefs {
 		if (FlxG.save.data.warningScreen != null)
 			warningScreen = FlxG.save.data.warningScreen; //funny done by RushFox, play Reinked or die.
 
+		if (FlxG.save.data.fullscreen != null)
+			fullscreen = FlxG.save.data.fullscreen;
+		
 		if (FlxG.save.data.arroCamMove != null)
 			arroCamMove = FlxG.save.data.arroCamMove;
 
@@ -103,9 +106,6 @@ class ClientPrefs {
 			if(Main.fpsVar != null) {
 				Main.fpsVar.visible = showFPS;
 			}
-		}
-		if(FlxG.save.data.flashing != null) {
-			flashing = FlxG.save.data.flashing;
 		}
 		if(FlxG.save.data.globalAntialiasing != null) {
 			globalAntialiasing = FlxG.save.data.globalAntialiasing;
@@ -156,7 +156,7 @@ class ClientPrefs {
 		}
 
 		var save:FlxSave = new FlxSave();
-		save.bind('controls_v2', 'ninjamuffin99');
+		save.bind('controls_v2', 'Controls');
 		if(save != null && save.data.customControls != null) {
 			var loadedControls:Map<String, Dynamic> = save.data.customControls;
 			for (control => keys in loadedControls) {

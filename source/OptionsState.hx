@@ -718,6 +718,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Low Quality',
 		'Anti-Aliasing',
 		'Persistent Cached Data',
+		'Fullscreen',
 		#if !html5
 		'Framerate', //Apparently 120FPS isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 		#end
@@ -886,11 +887,11 @@ class PreferencesSubstate extends MusicBeatSubstate
 						}
 						OptionsState.menuBG.antialiasing = ClientPrefs.globalAntialiasing;
 
+					case 'Fullscreen':
+						ClientPrefs.fullscreen = !ClientPrefs.fullscreen;
+
 					case 'Note Splashes':
 						ClientPrefs.noteSplashes = !ClientPrefs.noteSplashes;
-
-					case 'Flashing Lights':
-						ClientPrefs.flashing = !ClientPrefs.flashing;
 
 					case 'Violence':
 						ClientPrefs.violence = !ClientPrefs.violence;
@@ -922,7 +923,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 					case 'Persistent Cached Data':
 						ClientPrefs.imagesPersist = !ClientPrefs.imagesPersist;
 						FlxGraphic.defaultPersist = ClientPrefs.imagesPersist;
-					
+
 					case 'Hide Song Length':
 						ClientPrefs.hideTime = !ClientPrefs.hideTime;
 				}
@@ -996,6 +997,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 				daText = "If checked, disables some background details,\ndecreases loading times and improves performance.";
 			case 'Persistent Cached Data':
 				daText = "If checked, images loaded will stay in memory\nuntil the game is closed, this increases memory usage,\nbut basically makes reloading times instant.";
+			case 'Fullscreen':
+				daText = "If checked, runs the game in fullscreen resolution.";
 			case 'Anti-Aliasing':
 				daText = "If unchecked, disables anti-aliasing, increases performance\nat the cost of the graphics not looking as smooth.";
 			case 'Downscroll':
@@ -1074,8 +1077,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 						daValue = ClientPrefs.globalAntialiasing;
 					case 'Note Splashes':
 						daValue = ClientPrefs.noteSplashes;
-					case 'Flashing Lights':
-						daValue = ClientPrefs.flashing;
+					case 'Fullscreen':
+						daValue = ClientPrefs.fullscreen;
+						FlxG.fullscreen = ClientPrefs.fullscreen;
 					case 'Downscroll':
 						daValue = ClientPrefs.downScroll;
 					case 'Middlescroll':

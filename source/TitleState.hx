@@ -26,6 +26,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
+import lime.system.System;
 
 using StringTools;
 
@@ -118,12 +119,6 @@ class TitleState extends MusicBeatState
 		{
 			StoryMenuState.weekCompleted = FlxG.save.data.weekCompleted;
 		}
-		
-		if (FlxG.save.data.CrusadeAchievementsThing == null)
-		{
-			FlxG.save.data.CrusadeAchievementsThing = [];
-			FlxG.save.flush();
-		}
 
 		FlxG.mouse.visible = false;
 		#if FREEPLAY
@@ -131,22 +126,17 @@ class TitleState extends MusicBeatState
 		#elseif CHARTING
 		MusicBeatState.switchState(new ChartingState());
 		#else
-		if(FlxG.save.data.flashing == null && !FlashingState.leftState) {
-			FlxTransitionableState.skipNextTransIn = true;
-			FlxTransitionableState.skipNextTransOut = true;
-			MusicBeatState.switchState(new FlashingState());
-		} else {
-			#if desktop
-			DiscordClient.initialize();
-			Application.current.onExit.add (function (exitCode) {
-				DiscordClient.shutdown();
-			});
-			#end
-			new FlxTimer().start(1, function(tmr:FlxTimer)
-			{
-				startIntro();
-			});
-		}
+		#if desktop
+		DiscordClient.initialize();
+		Application.current.onExit.add (function (exitCode) {
+			DiscordClient.shutdown();
+		});
+		#end
+		new FlxTimer().start(1, function(tmr:FlxTimer)
+		{
+			startIntro();
+		});
+
 		#end
 	}
 
@@ -305,6 +295,8 @@ class TitleState extends MusicBeatState
 		}
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
+		if (FlxG.keys.justPressed.ESCAPE)
+			System.exit(0);
 
 		#if mobile
 		for (touch in FlxG.touches.list)

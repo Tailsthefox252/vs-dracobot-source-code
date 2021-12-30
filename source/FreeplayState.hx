@@ -17,6 +17,8 @@ import lime.utils.Assets;
 import flixel.system.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
 import WeekData;
+import CreditsState;
+import BonusScreens.UnlockScreen;
 
 using StringTools;
 
@@ -81,6 +83,23 @@ class FreeplayState extends MusicBeatState
 		}
 		WeekData.setDirectoryFromWeek();
 
+		// need to use the temporary thing to convert the achievements from dynamic to an array string;
+		for (i in 0...UnlockScreen.loadStuff().length)
+		{
+			switch (UnlockScreen.loadStuff()[i])
+			{
+				case 'week1done':
+					addSong('output', 7, 'dracobot', FlxColor.fromRGB(233, 245, 73));
+					addSong('dragonsnaps', 7, 'angyDracobot', FlxColor.fromRGB(255, 105, 74));
+				case 'week2done':
+					addSong('orb', 8, 'olevadon', FlxColor.fromRGB(0, 192, 255));
+					addSong('mystery', 8, 'olevadon', FlxColor.fromRGB(0, 192, 255));
+				case 'bothweeksdone':
+					addSong('eyeball', 9, 'nacidio', FlxColor.fromRGB(186, 31, 26));
+			}
+		}
+
+
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
 		for (i in 0...initSonglist.length)
 		{
@@ -90,25 +109,6 @@ class FreeplayState extends MusicBeatState
 				addSong(songArray[0], 0, songArray[1], Std.parseInt(songArray[2]));
 			}
 		}
-
-		var Temporary:Array<String> = FlxG.save.data.CrusadeAchievementsThing;
-		trace(Temporary);
-		//need to use the temporary thing to convert the achievements from dynamic to an array string;
-		for (i in 0...Temporary.length)
-		{
-			switch(Temporary[i])
-			{
-				case 'bothweeksdone':
-					addSong('eyeball', 9, 'nacidio', FlxColor.fromRGB(186,31,26));
-				case 'week2done':
-					addSong('orb', 8, 'olevadon', FlxColor.fromRGB(0,192,255));
-					addSong('mystery', 8, 'olevadon', FlxColor.fromRGB(0,192,255));
-				case 'week1done':
-					addSong('output', 7, 'dracobot', FlxColor.fromRGB(233,245,73));
-					addSong('dragonsnaps', 7, 'angyDracobot', FlxColor.fromRGB(255,105,74));
-			}
-		}
-
 		// LOAD MUSIC
 
 		// LOAD CHARACTERS
@@ -222,7 +222,6 @@ class FreeplayState extends MusicBeatState
 			}
 	}*/
 	var instPlaying:Int = -1;
-
 	private static var vocals:FlxSound = null;
 
 	override function update(elapsed:Float)
@@ -293,8 +292,17 @@ class FreeplayState extends MusicBeatState
 			vocals.play();
 			vocals.persist = true;
 			vocals.looped = true;
+			if (songs[curSelected].songName.toLowerCase() == 'error 404')
+			{
+				CreditsState.Error404EasterEggTriggered = true;
+			}
+			else
+			{
+				CreditsState.Error404EasterEggTriggered = false;
+			}
 			vocals.volume = 0.7;
 			instPlaying = curSelected;
+			trace(songs[curSelected].songName.toLowerCase());
 		}
 		else
 		#end if (accepted)

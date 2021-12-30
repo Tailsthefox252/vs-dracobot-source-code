@@ -16,6 +16,7 @@ import flixel.tweens.FlxTween;
 import flixel.effects.FlxFlicker;
 import flixel.util.FlxTimer;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.util.FlxSave;
 
 class UnlockScreen extends FlxState
 {
@@ -28,6 +29,8 @@ class UnlockScreen extends FlxState
 	var OKText:FlxText;
 	var UnlockMusic:FlxSound;
     var BoxSprite:FlxSprite;
+	public static var AchievementsArray:Array<String> = [];
+	public static var CrusadeAchievementsSaveFile:FlxSave = new FlxSave();
 
 	override public function new()
 	{
@@ -37,41 +40,53 @@ class UnlockScreen extends FlxState
 		// SpritesToMove.add(VanillaText);
 	}
 
+	public static function loadStuff():Array<String>
+	{
+		CrusadeAchievementsSaveFile.bind('achievements', 'CrusadeAchievements');
+		if (CrusadeAchievementsSaveFile.data.CrusadeAchievementsThing != null)
+			AchievementsArray = CrusadeAchievementsSaveFile.data.CrusadeAchievementsThing;
+		return AchievementsArray;
+	}
+
     public static function saveAndUnlockStuff()
     {
+		CrusadeAchievementsSaveFile.bind('achievements', 'CrusadeAchievements');
          // awful shit code //keep in mind this is for the actual new achievements to seperate them from the already unlocked ones.
+		if (CrusadeAchievementsSaveFile != null && CrusadeAchievementsSaveFile.data.CrusadeAchievementsThing != null)
+			AchievementsArray = CrusadeAchievementsSaveFile.data.CrusadeAchievementsThing;
 		switch (WeekData.getWeekFileName())
 		{
 			case 'weekd':
-				if (!FlxG.save.data.CrusadeAchievementsThing.contains('week1done'))
+				if (!AchievementsArray.contains('week1done'))
 				{
-					FlxG.save.data.CrusadeAchievementsThing.push('week1done');
+					AchievementsArray[0] = 'week1done';
 					messagesToDisplay.push('week1done');
 				}
-				if (FlxG.save.data.CrusadeAchievementsThing.contains('week2done')
-					&& !FlxG.save.data.CrusadeAchievementsThing.contains('bothweeksdone'))
+				if (AchievementsArray.contains('week2done')
+					&& !AchievementsArray.contains('bothweeksdone'))
 				{
-					FlxG.save.data.CrusadeAchievementsThing.push('bothweeksdone');
+					AchievementsArray[2] = 'bothweeksdone';
 					messagesToDisplay.push('bothweeksdone');
 				}
 			case 'weeko':
-				if (!FlxG.save.data.CrusadeAchievementsThing.contains('week2done'))
+				if (!AchievementsArray.contains('week2done'))
 				{
-					FlxG.save.data.CrusadeAchievementsThing.push('week2done');
+					AchievementsArray[1] = 'week2done';
 					messagesToDisplay.push('week2done');
 				}
-				if (FlxG.save.data.CrusadeAchievementsThing.contains('week1done')
-					&& !FlxG.save.data.CrusadeAchievementsThing.contains('bothweeksdone'))
+				if (AchievementsArray.contains('week1done')
+					&& !AchievementsArray.contains('bothweeksdone'))
 				{
-					FlxG.save.data.CrusadeAchievementsThing.push('bothweeksdone');
+					AchievementsArray[2] = 'bothweeksdone';
 					messagesToDisplay.push('bothweeksdone');
 				}
 		}
-		FlxG.save.flush();
 		trace(messagesToDisplay);
         if (messagesToDisplay.length > 0)
         { 
+			CrusadeAchievementsSaveFile.data.CrusadeAchievementsThing = AchievementsArray;
 			FlxTransitionableState.skipNextTransIn = true;
+			FlxG.save.flush();
 			FlxG.switchState(new UnlockScreen());
         }
 		else

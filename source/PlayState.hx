@@ -23,6 +23,7 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
@@ -50,6 +51,7 @@ import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
 import BonusScreens.UnlockScreen;
+import flixel.util.FlxGradient;
 
 #if sys
 import sys.FileSystem;
@@ -208,8 +210,8 @@ class PlayState extends MusicBeatState
 	var santa:BGSprite;
 	var heyTimer:Float;
 
-	var roofBG:FlxSprite;
-	var evilBG:FlxSprite;
+	var basicStageGraphics:FlxGroup = new FlxGroup();
+	var basicStageGraphics2:FlxGroup = new FlxGroup();//stage switching
 
 	var bgGirls:BackgroundGirls;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
@@ -363,6 +365,7 @@ class PlayState extends MusicBeatState
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
+		add(basicStageGraphics);
 		switch (curStage)
 		{
 			case 'fields':
@@ -380,33 +383,50 @@ class PlayState extends MusicBeatState
 				gfGroup.add(DracobotOnRockLol);
 				chars.push(DracobotOnRockLol);
 				gfArray.push(DracobotOnRockLol);//dracorock, draco on da rock
-				add(NeatSky);
-				add(ChillyHillz);
-				add(ChillyTrees);
-				add(ChillyFields);
+				basicStageGraphics.add(NeatSky);
+				basicStageGraphics.add(ChillyHillz);
+				basicStageGraphics.add(ChillyFields);
+				basicStageGraphics.add(ChillyTrees);
 			case 'rooftops':
+					add(basicStageGraphics2);
 					curStage = 'rooftops';
-					roofBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('rooftops/rooftops'));
+					var roofBG = new FlxSprite(-550, -200).loadGraphic(Paths.image('updated_week_1_bg', 'week7'));
 					roofBG.antialiasing = true;
-					roofBG.scrollFactor.set(0.8, 0.8);
+					roofBG.scrollFactor.set(1, 1);
 					roofBG.active = false;
 					// bg.visible = false;
-					add(roofBG);
+					var sky = FlxGradient.createGradientFlxSprite(2560, 1440, [0xFF2EE1FF, 0xFFA5F2FF]);
+					sky.x = -550;
+					sky.y = -200;
+					sky.active = false;
+					basicStageGraphics.add(sky);
+					basicStageGraphics.add(roofBG);
 
 					curStage = 'rooftopsEvil';
-					evilBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('rooftops/rooftops_evil'));
-					evilBG.antialiasing = true;
-					evilBG.scrollFactor.set(0.8, 0.8);
-					evilBG.active = false;
-					evilBG.visible = false;
-					add(evilBG);
+					var evilSky = FlxGradient.createGradientFlxSprite(2560, 1440, [0xFF050110, 0xFF401273]);
+					var evilRooftops = new FlxSprite(-550, -200).loadGraphic(Paths.image('rooftops_evil_bg_1'));
+					evilSky.x = -550;
+					evilSky.y = -200;
+					evilRooftops.scrollFactor.set(1, 1);
+					evilSky.scrollFactor.set(0, 0);
+					evilRooftops.antialiasing = true;
+					evilSky.active = false;
+					basicStageGraphics2.add(evilSky);
+					basicStageGraphics2.add(evilRooftops);
+					basicStageGraphics2.visible = false;
 
 			case 'rooftopsEvil':
 					curStage = 'rooftopsEvil';
-					evilBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('rooftops/rooftops_evil'));
-					evilBG.antialiasing = true;
-					evilBG.scrollFactor.set(0.8, 0.8);
-					add(evilBG);
+					var evilSky = FlxGradient.createGradientFlxSprite(2560, 1440, [0xFF050110, 0xFF401273]);
+					var evilRooftops = new FlxSprite(-550, -200).loadGraphic(Paths.image('rooftops_evil_bg_1'));
+					evilSky.x = -550;
+					evilSky.y = -200;
+					evilRooftops.antialiasing = true;
+					evilRooftops.scrollFactor.set(1, 1);
+					evilSky.scrollFactor.set(0, 0);
+					evilSky.active = false;
+					basicStageGraphics.add(evilSky);
+					basicStageGraphics.add(evilRooftops);
 			case 'stage': //Week 1
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);
@@ -2620,20 +2640,20 @@ class PlayState extends MusicBeatState
 					case 1:
 						isCameraOnForcedPos = false;
 						FlxTween.cancelTweensOf(FlxG.camera);
-						FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 1);
-						roofBG.visible = true;
-						evilBG.visible = false;
+						FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.5);
+						basicStageGraphics.visible = true;
+						basicStageGraphics2.visible = false;
 						cameraSpeed = 1;
 						FlxG.camera.shake(0.05, 0);
 					default:
 						cameraSpeed = 2.4;
 						FlxTween.cancelTweensOf(FlxG.camera);
 						isCameraOnForcedPos = true;
-						FlxTween.tween(FlxG.camera, {zoom: 2.5}, 1);
-						roofBG.visible = false;
+						FlxTween.tween(FlxG.camera, {zoom: 2.5}, 1.5);
+						basicStageGraphics.visible = false;
 						camFollow.x = (dad.getMidpoint().x + 30);
 						camFollow.y = (dad.getMidpoint().y - 330);
-						evilBG.visible = true;
+						basicStageGraphics2.visible = true;
 						FlxG.camera.shake(0.05, 9223372036854775807);
 						gf.playAnim('scared', true);
 
@@ -3876,11 +3896,9 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if(ClientPrefs.flashing) {
-			halloweenWhite.alpha = 0.4;
-			FlxTween.tween(halloweenWhite, {alpha: 0.5}, 0.075);
-			FlxTween.tween(halloweenWhite, {alpha: 0}, 0.25, {startDelay: 0.15});
-		}
+		halloweenWhite.alpha = 0.4;
+		FlxTween.tween(halloweenWhite, {alpha: 0.5}, 0.075);
+		FlxTween.tween(halloweenWhite, {alpha: 0}, 0.25, {startDelay: 0.15});
 	}
 
 	function killHenchmen():Void

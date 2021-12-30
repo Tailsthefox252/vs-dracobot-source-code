@@ -142,7 +142,6 @@ class FunkinLua {
 		set('hideHud', ClientPrefs.hideHud);
 		set('hideTime', ClientPrefs.hideTime);
 		set('cameraZoomOnBeat', ClientPrefs.camZooms);
-		set('flashingLights', ClientPrefs.flashing);
 		set('noteOffset', ClientPrefs.noteOffset);
 		set('lowQuality', ClientPrefs.lowQuality);
 
