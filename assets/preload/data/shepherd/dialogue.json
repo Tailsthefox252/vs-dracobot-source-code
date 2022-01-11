@@ -10,7 +10,7 @@
 		},
 		{
 			"speed": 0.05,
-			"portrait": "dracobot",
+			"portrait": "bf",
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
@@ -25,12 +25,12 @@
 			"text": "You alright?"
 		},
 		{
-			"speed": 0.13,
+			"speed": 0.001,
 			"portrait": "olevadon",
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "*falls on face and passes out*"
+			"text": "*passes out on falls on face*"
 		},
 		{
 			"speed": 0.05,
@@ -86,7 +86,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Yeah, we're doing fine. I told him about what happened last time and that I'm ok."
+			"text": "Yeah, we're doing fine. I told him about what happened last week and that I'm ok."
 		},
 		{
 			"speed": 0.05,
@@ -102,7 +102,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "hm?"
+			"text": "hm?.."
 		},
 		{
 			"speed": 0.03,
@@ -158,7 +158,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "I'm gonna be helping the other olevadons after this though..."
+			"text": "I gotta help the other olevadons after this though..."
 		},
 		{
 			"speed": 0.05,
@@ -170,11 +170,11 @@
 		},
 		{
 			"speed": 0.05,
-			"portrait": "dracobot",
+			"portrait": "enkeiko",
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "And I can understand that both of us don't want them to cry..."
+			"text": "You should know that their crying is loud, Draco..."
 		},
 		{
 			"speed": 0.035,
@@ -190,7 +190,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Baby olevadons are the size of ping pong balls and they are so soft!"
+			"text": "Baby olevadons are the size of ping pong balls and they are so soft like cotton balls."
 		},
 		{
 			"speed": 0.05,
@@ -198,7 +198,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "But their crying can be super loud. Like imagine dropping a glass table at 3 AM."
+			"text": "But their crying can be super loud. Imagine a high pitch THX starting theme playing at max volume."
 		},
 		{
 			"speed": 0.045,
@@ -206,7 +206,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Holy shit."
+			"text": "jeez..."
 		},
 		{
 			"speed": 0.05,
@@ -214,7 +214,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "They're usually asleep by this time so it's understandable."
+			"text": "They're usually asleep by this time which I forgot about. oof..."
 		},
 		{
 			"speed": 0.05,
@@ -226,11 +226,11 @@
 		},
 		{
 			"speed": 0.05,
-			"portrait": "Enkeiko",
+			"portrait": "enkeiko",
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Yeah, can we start already? I have to prepare food for them later on before my parents return."
+			"text": "Can we start already? I have to prepare food for them later on before my parents return."
 		},
 		{
 			"speed": 0.05,
@@ -238,7 +238,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Alright. We'll talk later about that little get together with others later, alright?"
+			"text": "Alright."
 		},
 		{
 			"speed": 0.035,
@@ -246,7 +246,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Yeah, sounds good with me."
+			"text": "Ok, the volume should be lowered a bit now."
 		},
 		{
 			"speed": 0.05,

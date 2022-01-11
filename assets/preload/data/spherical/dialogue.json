@@ -62,7 +62,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "So GF, I was wondering if I can help braid you and the others' hair when they come over tomorrow."
+			"text": "So GF, I was wondering if you need any help with anything later on."
 		},
 		{
 			"speed": 0.05,
@@ -70,7 +70,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Wait, you can braid hair?"
+			"text": "Not really. Things have been oddly mellow lately."
 		},
 		{
 			"speed": 0.05,
@@ -78,15 +78,15 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Yeah... A friend of my creator's sister taught me how to do all that. I usually do it on my freetime."
+			"text": "Ah alright. At least it gives you more time to spend with your boyfriend, right?"
 		},
 		{
 			"speed": 0.05,
-			"portrait": "dracobot",
+			"portrait": "gf",
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "They're a professional hair stylist so yeah..."
+			"text": "Haha! Yeah!"
 		},
 		{
 			"speed": 0.03,
@@ -100,9 +100,9 @@
 			"speed": 0.03,
 			"portrait": "gf",
 			"eventToDo": "",
-			"boxState": "angry",
+			"boxState": "normal",
 			"expression": "talk",
-			"text": "Boyfriend!"
+			"text": "Come on babe, don't be like that."
 		},
 		{
 			"speed": 0.04,
@@ -110,7 +110,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Oh no! It's nothing like that, broski! And plus, I'm already in a committed relationship with someone else."
+			"text": "Hey, it's nothing like that, broski! And plus, I'm already in a committed relationship with someone else."
 		},
 		{
 			"speed": 0.065,
@@ -134,7 +134,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "I didn't know you're dating someone. So who's the lucky girl?"
+			"text": "I didn't know you're dating someone. So who's the lucky someone?"
 		},
 		{
 			"speed": 0.05,
@@ -142,7 +142,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Lucky girl? Oh no, I'm not dating a girl. It's a guy that I'm dating."
+			"text": "Oh I don't know if I should say who."
 		},
 		{
 			"speed": 0.03,
@@ -150,7 +150,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Beep?!"
+			"text": "Beep Bo, bap bo bep"
 		},
 		{
 			"speed": 0.035,
@@ -158,7 +158,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Holy shit, really?!"
+			"text": "Yeah, tell us!"
 		},
 		{
 			"speed": 0.05,
@@ -166,7 +166,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Yeah! His name is Nacidio and let's just say that I too am dating a demon."
+			"text": "Alright! His name is Nacidio and let's just say that I too am dating a demon."
 		},
 		{
 			"speed": 0.05,
@@ -212,7 +212,7 @@
 			"speed": 0.05,
 			"portrait": "olevadon",
 			"eventToDo": "",
-			"boxState": "normal",
+			"boxState": "angry",
 			"expression": "talk",
 			"text": "Gugugu!"
 		},
@@ -220,7 +220,7 @@
 			"speed": 0.035,
 			"portrait": "bf",
 			"eventToDo": "",
-			"boxState": "normal",
+			"boxState": "angry",
 			"expression": "talk",
 			"text": "Bep Bo!"
 		},

@@ -11,7 +11,7 @@
 		{
 			"eventToDo": "normal",
 			"expression": "talk",
-			"text": "*As well as Dracobot's Olevadon where we wait*",
+			"text": "*As well as Dracobot's Olevadon where they wait*",
 			"boxState": "blank",
 			"portrait": "bf",
 			"speed": 0.05
@@ -51,7 +51,7 @@
 		{
 			"eventToDo": "",
 			"expression": "talk",
-			"text": "beep bap skebo...",
+			"text": "beep bap skebo?",
 			"boxState": "normal",
 			"portrait": "bf",
 			"speed": 0.06
@@ -123,7 +123,7 @@
 		{
 			"expression": "talk",
 			"eventToDo": "",
-			"text": "Only thing Dr. Isha told me is that my sister and I were human before we died. Never told me who exactly or how.",
+			"text": "Only thing Dr. Isha told me is that my sister and I were human before we met our fate. Never told me who we were exactly or how we died.",
 			"boxState": "normal",
 			"speed": 0.05,
 			"portrait": "dracobot"
@@ -254,7 +254,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Not a perfect time to make a blue balls joke little man."
+			"text": "Not a perfect time to make a blue balls joke, broski."
 		},
 		{
 			"speed": 0.05,
@@ -262,7 +262,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "Anyways, that olevadon of mine heard about what happened and he wants to have a rap battle with ya!"
+			"text": "Anyways, that olevadon of mine heard about the rap battle we did and he wants to have a rap battle with ya too!"
 		},
 		{
 			"speed": 0.05,
