@@ -62,8 +62,7 @@ class UnlockScreen extends FlxState
 					AchievementsArray[0] = 'week1done';
 					messagesToDisplay.push('week1done');
 				}
-				if (AchievementsArray.contains('week2done')
-					&& !AchievementsArray.contains('bothweeksdone'))
+				if (AchievementsArray.contains('week2done') && !AchievementsArray.contains('bothweeksdone'))
 				{
 					AchievementsArray[2] = 'bothweeksdone';
 					messagesToDisplay.push('bothweeksdone');
@@ -74,15 +73,14 @@ class UnlockScreen extends FlxState
 					AchievementsArray[1] = 'week2done';
 					messagesToDisplay.push('week2done');
 				}
-				if (AchievementsArray.contains('week1done')
-					&& !AchievementsArray.contains('bothweeksdone'))
-				{
+				if (AchievementsArray.contains('week1done') && !AchievementsArray.contains('bothweeksdone'))
+ 				{
 					AchievementsArray[2] = 'bothweeksdone';
 					messagesToDisplay.push('bothweeksdone');
 				}
 		}
 		trace(messagesToDisplay);
-        if (messagesToDisplay.length > 0)
+        if (messagesToDisplay.length > 0) 
         { 
 			CrusadeAchievementsSaveFile.data.CrusadeAchievementsThing = AchievementsArray;
 			FlxTransitionableState.skipNextTransIn = true;

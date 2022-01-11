@@ -16,6 +16,10 @@
 				30,
 				-65
 			],
+			"camera_pos": [
+				-40,
+				0
+			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singLEFT",
@@ -26,6 +30,10 @@
 			"offsets": [
 				50,
 				-68
+			],
+			"camera_pos": [
+				0,
+				40
 			],
 			"loop": false,
 			"fps": 24,
@@ -38,6 +46,10 @@
 				25,
 				-75
 			],
+			"camera_pos": [
+				0,
+				-40
+			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUP",
@@ -48,6 +60,11 @@
 			"offsets": [
 				73,
 				-53
+			],
+			"camera_pos": 
+			[
+				40,
+				0
 			],
 			"loop": false,
 			"fps": 24,
@@ -60,7 +77,7 @@
 	"image": "characters/olevadon_assets",
 	"position": [
 		0,
-		0
+		420
 	],
 	"healthicon": "icon-olevadon",
 	"flip_x": false,

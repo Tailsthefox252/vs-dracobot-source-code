@@ -82,26 +82,26 @@
 		},
 		{
 			"speed": 0.5,
-			"portrait": "bf",
+			"portrait": "dracobot",
 			"eventToDo": "",
-			"boxState": "blank",
-			"expression": "talk",
-			"text": "..."
+			"boxState": "normal",
+			"expression": "doff",
+			"text": ""
 		},
 		{
 			"speed": 0.32,
-			"portrait": "bf",
+			"portrait": "dracobot",
 			"eventToDo": "",
-			"boxState": "blank",
-			"expression": "talk",
-			"text": "..."
+			"boxState": "normal",
+			"expression": "doff",
+			"text": ""
 		},
 		{
 			"speed": 0.32,
 			"portrait": "dracobot",
 			"eventToDo": "wimdows",
 			"boxState": "normal",
-			"expression": "talk",
+			"expression": "dstartup",
 			"text": ""
 		},
 		{

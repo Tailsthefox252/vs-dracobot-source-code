@@ -1,12 +1,12 @@
 {
 	"position": [
-		200,
-		65
+		120,
+		75
 	],
 	"dialogue_pos": "left",
-	"scale": 1.25,
-	"image": "dracobot",
-	"graphicsprites": ["dsad", "dracobot", "dshutter", "doff", "dstartup"],
+	"scale": 1,
+	"image": "enkeiko dialoggus portrait",
+	"graphicsprites": [],
 	"animations": [
 		{
 			"idle_offsets": [

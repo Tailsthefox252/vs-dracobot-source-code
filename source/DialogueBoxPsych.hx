@@ -630,6 +630,8 @@ class DialogueBoxPsych extends FlxSubState
 				}
 				switch (curDialogue.eventToDo)
 				{
+					case 'screensky':
+						PlayState.snapCamFollowToPos(400, -750);
 					case 'blackout':
 						var Black = new FlxSprite().makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 						SpawnedStuff.add(Black);
@@ -672,6 +674,7 @@ class DialogueBoxPsych extends FlxSubState
 					case 'kill':
 						destroyAdditionalObjects();
 						arrayCharacters[lastCharacter].setColorTransform(1, 1, 1, 1, 0, 0, 0);
+
 				}
 			}
 		}

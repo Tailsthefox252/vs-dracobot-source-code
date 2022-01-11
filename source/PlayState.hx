@@ -135,8 +135,8 @@ class PlayState extends MusicBeatState
 	private var strumLine:FlxSprite;
 
 	//Handles the new epic mega sexy cam code that i've done
-	private var camFollow:FlxPoint;
-	private var camFollowPos:FlxObject;
+	public static var camFollow:FlxPoint;
+	public static var camFollowPos:FlxObject;
 	private static var prevCamFollow:FlxPoint;
 	private static var prevCamFollowPos:FlxObject;
 	private static var resetSpriteCache:Bool = false;
@@ -257,6 +257,8 @@ class PlayState extends MusicBeatState
 	public var introSoundsSuffix:String = '';
 	public static var blackScreen:FlxSprite;
 
+	var songName:String = 'fresh';
+
 	override public function create()
 	{
 		trace(storyWeek);
@@ -312,7 +314,7 @@ class PlayState extends MusicBeatState
 		#end
 
 		GameOverSubstate.resetVariables();
-		var songName:String = Paths.formatToSongPath(SONG.song);
+		songName = Paths.formatToSongPath(SONG.song);
 		curStage = PlayState.SONG.stage;
 		trace('stage is: ' + curStage);
 		if(PlayState.SONG.stage == null || PlayState.SONG.stage.length < 1) {
@@ -820,9 +822,11 @@ class PlayState extends MusicBeatState
 		}
 
 		var file:String = Paths.json(songName + '/dialogue'); //Checks for json/Psych Engine dialogue
+
 		if (OpenFlAssets.exists(file)) {
 			dialogueJson = DialogueBoxPsych.parseDialogue(file);
 		}
+		else
 
 		var file:String = Paths.txt(songName + '/' + songName + 'Dialogue'); //Checks for vanilla/Senpai dialogue
 		if (OpenFlAssets.exists(file)) {
@@ -1080,7 +1084,7 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
-				case 'power-on' | 'error-404' | 'scan' | 'solder':
+				case 'power-on' | 'error-404' | 'scan' | 'solder' | 'blue-ball' | 'spherical'| 'shepherd':
 					startDialogue(dialogueJson);
 				default:
 					startCountdown();
@@ -3032,7 +3036,7 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	function snapCamFollowToPos(x:Float, y:Float) {
+	public static function snapCamFollowToPos(x:Float, y:Float) {
 		camFollow.set(x, y);
 		camFollowPos.setPosition(x, y);
 	}
@@ -3045,7 +3049,15 @@ class PlayState extends MusicBeatState
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
 		vocals.pause();
-		if(ClientPrefs.noteOffset <= 0) {
+		endingSong = true;
+		canPause = false;
+
+		var fileForEndDialog:String = Paths.json(songName + '/Enddialogue');
+		if (OpenFlAssets.exists(fileForEndDialog))
+		{
+			startDialogue(DialogueBoxPsych.parseDialogue(fileForEndDialog));
+		}
+		else if(ClientPrefs.noteOffset <= 0) {
 			finishCallback();
 		} else {
 			finishTimer = new FlxTimer().start(ClientPrefs.noteOffset / 1000, function(tmr:FlxTimer) {
@@ -3079,8 +3091,6 @@ class PlayState extends MusicBeatState
 		timeBarBG.visible = false;
 		timeBar.visible = false;
 		timeTxt.visible = false;
-		canPause = false;
-		endingSong = true;
 		camZooming = false;
 		inCutscene = false;
 		updateTime = false;

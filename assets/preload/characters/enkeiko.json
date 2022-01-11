@@ -16,6 +16,10 @@
 				-164,
 				8
 			],
+			"camera_pos": [
+				-120,
+				-20
+			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singLEFT",
@@ -26,6 +30,10 @@
 			"offsets": [
 				-80,
 				-111
+			],
+			"camera_pos": [
+				-110,
+				40
 			],
 			"loop": false,
 			"fps": 24,
@@ -38,6 +46,10 @@
 				-146,
 				21
 			],
+			"camera_pos": [
+				-110,
+				-90
+			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUP",
@@ -49,6 +61,10 @@
 				-180,
 				32
 			],
+			"camera_pos": [
+				0,
+				-20
+			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHT",
@@ -59,8 +75,8 @@
 	"no_antialiasing": false,
 	"image": "characters/enkeiko",
 	"position": [
-		-20,
-		-265
+		0,
+		125
 	],
 	"healthicon": "icon-enkeiko",
 	"flip_x": false,

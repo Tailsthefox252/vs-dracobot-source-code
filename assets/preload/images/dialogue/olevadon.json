@@ -1,12 +1,12 @@
 {
 	"position": [
-		200,
-		65
+		70,
+		190
 	],
 	"dialogue_pos": "left",
-	"scale": 1.25,
-	"image": "dracobot",
-	"graphicsprites": ["dsad", "dracobot", "dshutter", "doff", "dstartup"],
+	"scale": 1.12500,
+	"image": "olevadon",
+	"graphicsprites": [],
 	"animations": [
 		{
 			"idle_offsets": [
