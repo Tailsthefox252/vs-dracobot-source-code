@@ -6,8 +6,12 @@
 				0,
 				0
 			],
-			"anim": "danceLeft",
-			"fps": 12,
+			"anim": "danceRight",
+			"fps": 24,
+			"camera_pos": [
+				0,
+				0
+			],
 			"name": "He jammin",
 			"indices": []
 		},
@@ -17,10 +21,14 @@
 				0,
 				0
 			],
-			"anim": "danceRight",
-			"fps": 12,
+			"anim": "danceLeft",
+			"fps": 24,
+			"camera_pos": [
+				0,
+				0
+			],
 			"name": "He jammin",
-			"indices": [3]
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
@@ -32,9 +40,9 @@
 	"healthicon": "dracobot",
 	"flip_x": false,
 	"healthbar_colors": [
-		165,
-		0,
-		77
+		233,
+		245,
+		73
 	],
 	"camera_position": [
 		0,
