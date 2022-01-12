@@ -668,6 +668,7 @@ class DialogueBoxPsych extends FlxSubState
 							else
 							{
 								SpawnedStuff.add(CircleLol);
+								add(CircleLol);
 							}
 						}, 30);
 						SpawnedStuff.add(TheFunkyTimer);
