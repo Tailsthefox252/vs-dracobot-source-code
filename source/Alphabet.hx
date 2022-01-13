@@ -463,13 +463,9 @@ class AlphaCharacter extends FlxSprite
 				// x -= 35 - (90 * (1.0 - textSize));
 				y += 20 * textSize;
 			case '(':
-				x -= 65 * textSize;
 				y -= 5 * textSize;
-				offset.x = -58 * textSize;
 			case ')':
-				x -= 20 / textSize;
 				y -= 5 * textSize;
-				offset.x = 12 * textSize;
 			case '.':
 				y += 45 * textSize;
 				x += 5 * textSize;

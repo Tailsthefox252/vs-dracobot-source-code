@@ -22,7 +22,8 @@ class MasterEditorMenu extends MusicBeatState
 		'Menu Character Editor',
 		'Dialogue Editor',
 		'Dialogue Portrait Editor',
-		'Character Editor'
+		'Character Editor',
+		'Alphabet Test'
 	];
 	private var grpTexts:FlxTypedGroup<Alphabet>;
 
@@ -75,6 +76,8 @@ class MasterEditorMenu extends MusicBeatState
 		if (controls.ACCEPT)
 		{
 			switch(options[curSelected]) {
+				case 'Alphabet Test':
+					FlxG.switchState(new AlphabetTest());
 				case 'Character Editor':
 					LoadingState.loadAndSwitchState(new CharacterEditorState(Character.DEFAULT_CHARACTER, false));
 				case 'Week Editor':
