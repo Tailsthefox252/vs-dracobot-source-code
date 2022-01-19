@@ -25,12 +25,12 @@
 			"text": "You alright?"
 		},
 		{
-			"speed": 0.001,
-			"portrait": "olevadon",
+			"speed": 0,
+			"portrait": "bf",
 			"eventToDo": "",
-			"boxState": "normal",
+			"boxState": "blank",
 			"expression": "talk",
-			"text": "*passes out on falls on face*"
+			"text": "*Olevadon passes out on the spot from exhaustion*"
 		},
 		{
 			"speed": 0.05,
