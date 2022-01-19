@@ -20,7 +20,7 @@
 			"fps": 24,
 			"anim": "singLEFT",
 			"camera_pos": [
-				-220,
+				-185,
 				-90
 			],
 			"indices": [],
@@ -36,7 +36,7 @@
 			"anim": "singDOWN",
 			"camera_pos": [
 				-160,
-				80
+				-60
 			],
 			"indices": [],
 			"name": "Dracobot Down"
@@ -51,7 +51,7 @@
 			"anim": "singUP",
 			"camera_pos": [
 				-160,
-				-150
+				-130
 			],
 			"indices": [],
 			"name": "Dracobot Up"
@@ -65,7 +65,7 @@
 			"fps": 24,
 			"anim": "singRIGHT",
 			"camera_pos": [
-				70,
+				-125,
 				-90
 			],
 			"indices": [],

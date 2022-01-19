@@ -1084,8 +1084,10 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
-				case 'power-on' | 'error-404' | 'scan' | 'blue-ball' | 'spherical'| 'shepherd':
+				case 'power-on' | 'error-404' | 'scan':
 					startDialogue(dialogueJson, 'DracoDialogue', 'week7');
+				case  'blue-ball' | 'spherical'| 'shepherd':
+					startDialogue(dialogueJson, 'FieldsDialogue', 'fields');
 				case 'solder':
 					startDialogue(dialogueJson);
 				default:
