@@ -1084,7 +1084,9 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
-				case 'power-on' | 'error-404' | 'scan' | 'solder' | 'blue-ball' | 'spherical'| 'shepherd':
+				case 'power-on' | 'error-404' | 'scan' | 'blue-ball' | 'spherical'| 'shepherd':
+					startDialogue(dialogueJson, 'DracoDialogue', 'week7');
+				case 'solder':
 					startDialogue(dialogueJson);
 				default:
 					startCountdown();
@@ -1220,14 +1222,14 @@ class PlayState extends MusicBeatState
 
 	var dialogueCount:Int = 0;
 	//You don't have to add a song, just saying. You can just do "startDialogue(dialogueJson);" and it should work
-	public function startDialogue(dialogueFile:DialogueFile, ?song:String = null):Void
+	public function startDialogue(dialogueFile:DialogueFile, ?song:String = null, ?library:String = null):Void
 	{
 		// TO DO: Make this more flexible, maybe?
 		if(dialogueFile.dialogue.length > 0) {
 			inCutscene = true;
 			CoolUtil.precacheSound('dialogue');
 			CoolUtil.precacheSound('dialogueClose');
-			var doof:DialogueBoxPsych = new DialogueBoxPsych(dialogueFile, song);
+			var doof:DialogueBoxPsych = new DialogueBoxPsych(dialogueFile, song, library);
 			if(endingSong) {
 				doof.finishThing = endSong;
 			} else {

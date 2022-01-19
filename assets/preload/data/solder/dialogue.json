@@ -107,7 +107,7 @@
 		{
 			"speed": 0.16,
 			"portrait": "dracobot",
-			"eventToDo": "",
+			"eventToDo": "musiclive",
 			"boxState": "normal",
 			"expression": "talk",
 			"text": "Ugh..."

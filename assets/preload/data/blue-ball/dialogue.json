@@ -1,7 +1,7 @@
 {
 	"dialogue": [
 		{
-			"eventToDo": "",
+			"eventToDo": "blackout2",
 			"expression": "talk",
 			"text": "*Dracobot is seen flying BF and GF to the Chilly Fields were most olevadons are located.*",
 			"boxState": "blank",
@@ -170,7 +170,7 @@
 		},
 		{
 			"expression": "talk",
-			"eventToDo": "",
+			"eventToDo": "kill",
 			"text": " ",
 			"boxState": "normal",
 			"speed": 0.05,

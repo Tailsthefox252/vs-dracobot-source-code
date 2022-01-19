@@ -230,16 +230,17 @@ class DialogueBoxPsych extends FlxSubState
 
 	// var charPositionList:Array<String> = ['left', 'center', 'right'];
 	var SpawnedStuff:FlxTypedGroup<Dynamic> = new FlxTypedGroup<Dynamic>();
+	var SpawnedStuffBGLayer:FlxTypedGroup<Dynamic> = new FlxTypedGroup<Dynamic>();
 	var HighPriority:FlxTypedGroup<Dynamic> = new FlxTypedGroup<Dynamic>();
 	var CharacterShit:FlxTypedGroup<Dynamic> = new FlxTypedGroup<Dynamic>();
 
-	public function new(dialogueList:DialogueFile, ?song:String = null)
+	public function new(dialogueList:DialogueFile, ?song:String = null, ?library:String = null)
 	{
 		super();
 
 		if (song != null && song != '')
 		{
-			FlxG.sound.playMusic(Paths.music(song), 0);
+			FlxG.sound.playMusic(Paths.music(song, library), 0);
 			FlxG.sound.music.fadeIn(2, 0, 1);
 		}
 
@@ -250,9 +251,10 @@ class DialogueBoxPsych extends FlxSubState
 		bgFade.scrollFactor.set();
 		bgFade.visible = true;
 		bgFade.alpha = 0;
-		FlxTween.tween(bgFade, {alpha: 0.5}, 1); // shadow mario or however scripted the bg fade JUST USE A TWEEN PLEEASEEEEEEEEEEEEEE
+		FlxTween.tween(bgFade, {alpha: 0.5}, 1); // shadow mario or whoever scripted the bg fade JUST USE A TWEEN PLEEASEEEEEEEEEEEEEE
 		// i had to change into a tween so its reusable for the blackout effect.
 		add(bgFade);
+		add(SpawnedStuffBGLayer);
 		add(CharacterShit);
 		add(SpawnedStuff);
 		add(HighPriority);
@@ -630,8 +632,16 @@ class DialogueBoxPsych extends FlxSubState
 				}
 				switch (curDialogue.eventToDo)
 				{
+					case 'musickill':
+						FlxG.sound.music.pause();
+					case 'musiclive':
+						FlxG.sound.playMusic(Paths.music('DracoDialogue', 'week7'));
+						FlxG.sound.music.play();
 					case 'screensky':
 						PlayState.snapCamFollowToPos(400, -750);
+					case 'blackout2': 
+						var Racism = new FlxSprite().makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+						SpawnedStuffBGLayer.add(Racism);
 					case 'blackout':
 						var Black = new FlxSprite().makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 						SpawnedStuff.add(Black);
@@ -651,6 +661,7 @@ class DialogueBoxPsych extends FlxSubState
 						StaticSound.play();
 						SpawnedStuff.add(StaticSound); // referring to the variable for the sound itself since if i dont do it this way i cant delete the sound with 'kill'
 					case 'loading':
+						FlxG.sound.music.pause();
 						var FuckShit:Int = 0;
 						var CircleLol:FlxSprite = new FlxSprite(char.x + 70, char.y + char.height * 0.25);
 						CircleLol.frames = Paths.getSparrowAtlas('loading circle');
@@ -744,7 +755,7 @@ class DialogueBoxPsych extends FlxSubState
 
 	public function destroyAdditionalObjects()
 	{
-		for (fuck in SpawnedStuff.members)
+		for (fuck in (SpawnedStuff.members.concat(SpawnedStuffBGLayer.members)))
 		{
 			fuck.destroy();
 		}
