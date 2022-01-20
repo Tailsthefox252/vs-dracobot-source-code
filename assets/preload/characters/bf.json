@@ -18,7 +18,7 @@
 				-6
 			],
 			"camera_pos": [
-				-105,
+				-190,
 				0
 			],
 			"anim": "singLEFT",
@@ -48,7 +48,7 @@
 				27
 			],
 			"camera_pos": [
-				-110,
+				-90,
 				-15
 			],
 			"anim": "singUP",
@@ -63,7 +63,7 @@
 				-7
 			],
 			"camera_pos": [
-				-85,
+				-100,
 				0
 			],
 			"anim": "singRIGHT",
@@ -78,7 +78,7 @@
 				19
 			],
 			"camera_pos": [
-				-85,
+				-190,
 				0
 			],
 			"anim": "singLEFTmiss",
@@ -108,8 +108,8 @@
 				27
 			],
 			"camera_pos": [
-				-110,
-				-50
+				-90,
+				-15
 			],
 			"anim": "singUPmiss",
 			"fps": 24,
@@ -123,7 +123,7 @@
 				22
 			],
 			"camera_pos": [
-				-85,
+				-100,
 				0
 			],
 			"anim": "singRIGHTmiss",

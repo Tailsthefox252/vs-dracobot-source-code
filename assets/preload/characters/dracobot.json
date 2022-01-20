@@ -35,8 +35,8 @@
 			"fps": 24,
 			"anim": "singDOWN",
 			"camera_pos": [
-				-160,
-				-60
+				93,
+				-23
 			],
 			"indices": [],
 			"name": "Down"
@@ -51,7 +51,7 @@
 			"anim": "singUP",
 			"camera_pos": [
 				-160,
-				-130
+				-110
 			],
 			"indices": [],
 			"name": "Up"
