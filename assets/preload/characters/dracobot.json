@@ -35,8 +35,8 @@
 			"fps": 24,
 			"anim": "singDOWN",
 			"camera_pos": [
-				93,
-				-23
+				-160,
+				-60
 			],
 			"indices": [],
 			"name": "Down"
