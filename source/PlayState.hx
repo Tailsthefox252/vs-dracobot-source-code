@@ -3236,7 +3236,7 @@ class PlayState extends MusicBeatState
 
 	function ArrowCamThing(char:Dynamic)
 	{
-		if (!char.IsPlayer)
+		if (!char.isPlayer)
 		{
 			camFollow.x = (char.getMidpoint().x + 150) + char.Cammy_Offsetty[0];
 		}	

@@ -18,7 +18,7 @@
 				-6
 			],
 			"camera_pos": [
-				-190,
+				-70,
 				0
 			],
 			"anim": "singLEFT",
@@ -63,7 +63,7 @@
 				-7
 			],
 			"camera_pos": [
-				-100,
+				-110,
 				0
 			],
 			"anim": "singRIGHT",
