@@ -22,7 +22,7 @@ class UnlockScreen extends FlxState
 {
 	var SpritesToMove:FlxSpriteGroup = new FlxSpriteGroup(FlxG.width, Std.int(FlxG.height * 0.361979167) - 32);
     var achievementStatus:Map<String, String> = ["week1done" => "Unlocked Output and Dragonsnaps", "week2done" => "Unlocked Mystery and Orb", "bothweeksdone" => "Unlocked Eyeball"];
-	var achievementData:Map<String, String> = ['week1done' => 'Output and Dragonsnaps now possess spots in Freeplay!', 'week2done' => "Olevadon is excited for a rematch! \n Mystery and Orb have appeared in freeplay.", 'bothweeksdone' => 'A mysterious entity has appeared in freeplay.\n How come he looks like someone familiar?'];
+	var achievementData:Map<String, String> = ['week1done' => 'Output and Dragonsnaps now possess spots in Freeplay!', 'week2done' => "Olevadon is excited for a rematch! \n Mystery and Orb have appeared in freeplay.", 'bothweeksdone' => 'A mysterious entity has appeared in freeplay.\n Do you dare to take on this blood demon?'];
     public static var messagesToDisplay:Array<String> = [];
     var AchievementAccepted:Bool = false;
 	var ChocolateDescription:FlxText;
