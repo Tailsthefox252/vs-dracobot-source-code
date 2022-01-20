@@ -43,15 +43,15 @@
 		},
 		{
 			"offsets": [
-				-160,
-				-110
+				57,
+				136
 			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUP",
 			"camera_pos": [
 				-160,
-				-130
+				-110
 			],
 			"indices": [],
 			"name": "Dracobot Up"
