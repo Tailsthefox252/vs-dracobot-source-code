@@ -297,14 +297,6 @@
 			"text": "I'll also ask her to make this body harder for it be possessed by other spirits."
 		},
 		{
-			"speed": 0.05,
-			"portrait": "bf",
-			"eventToDo": "",
-			"boxState": "normal",
-			"expression": "talk",
-			"text": "I'll also ask her to make this body harder for it be possessed by other spirits."
-		},
-		{
 			"speed": 0.06,
 			"portrait": "dracobot",
 			"eventToDo": "",
