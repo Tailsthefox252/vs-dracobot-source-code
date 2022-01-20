@@ -11,7 +11,7 @@
 		{
 			"eventToDo": "normal",
 			"expression": "talk",
-			"text": "*As well as Dracobot's Olevadon where they wait*",
+			"text": "*As well as the Shepherd and their family.*",
 			"boxState": "blank",
 			"portrait": "bf",
 			"speed": 0.05
@@ -123,7 +123,15 @@
 		{
 			"expression": "talk",
 			"eventToDo": "",
-			"text": "Only thing Dr. Isha told me is that my sister and I were human before we met our fate. Never told me who we were exactly or how we died.",
+			"text": "Though, the only thing Dr. Isha told me is that my sister and I were human before we met our fate.",
+			"boxState": "normal",
+			"speed": 0.05,
+			"portrait": "dracobot"
+		},
+		{
+			"expression": "talk",
+			"eventToDo": "",
+			"text": "She never told us who we were exactly or how we died.",
 			"boxState": "normal",
 			"speed": 0.05,
 			"portrait": "dracobot"
@@ -139,7 +147,7 @@
 		{
 			"expression": "talk",
 			"eventToDo": "",
-			"text": "Huh...",
+			"text": "(That's oddly specific of her to say that...)",
 			"boxState": "normal",
 			"speed": 0.05,
 			"portrait": "gf"
@@ -170,15 +178,15 @@
 		},
 		{
 			"expression": "talk",
-			"eventToDo": "kill",
-			"text": " ",
-			"boxState": "normal",
+			"eventToDo": "",
+			"text": ". . .",
+			"boxState": "blank",
 			"speed": 0.05,
 			"portrait": "bf"
 		},
 		{
 			"expression": "talk",
-			"eventToDo": "",
+			"eventToDo": "kill",
 			"text": "This is the Chilly Fields! Home to where olevadons mostly live. The olevadon shepherd and his family lives here as well.",
 			"boxState": "normal",
 			"speed": 0.05,
