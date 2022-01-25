@@ -8,10 +8,6 @@
 			"loop": false,
 			"fps": 24,
 			"anim": "idle",
-			"camera_pos": [
-				0,
-				0
-			],
 			"indices": [],
 			"name": "nacidio Idle"
 		},
@@ -24,8 +20,8 @@
 			"fps": 24,
 			"anim": "singLEFT",
 			"camera_pos": [
-				0,
-				0
+				-70,
+				-370
 			],
 			"indices": [],
 			"name": "nacidio left"
@@ -39,8 +35,8 @@
 			"fps": 24,
 			"anim": "singDOWN",
 			"camera_pos": [
-				0,
-				0
+				-50,
+				-360
 			],
 			"indices": [],
 			"name": "nacidio down"
@@ -54,8 +50,8 @@
 			"fps": 24,
 			"anim": "singUP",
 			"camera_pos": [
-				0,
-				0
+				-50,
+				-380
 			],
 			"indices": [],
 			"name": "nacidio up"
@@ -69,8 +65,8 @@
 			"fps": 24,
 			"anim": "singRIGHT",
 			"camera_pos": [
-				0,
-				0
+				-50,
+				-370
 			],
 			"indices": [],
 			"name": "nacidio right"
