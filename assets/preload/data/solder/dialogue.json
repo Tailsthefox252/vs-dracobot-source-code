@@ -22,7 +22,7 @@
 			"eventToDo": "",
 			"boxState": "normal",
 			"expression": "talk",
-			"text": "[Initiate Clean Up.]"
+			"text": "[Scanning...]"
 		},
 		{
 			"speed": 0.32,
